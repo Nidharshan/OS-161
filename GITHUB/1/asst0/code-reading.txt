@@ -1,0 +1,146 @@
+1.Which register number is used for the frame pointer (fp) in OS/161?	
+
+#define s8  $30    /* saved 8 = frame pointer */
+
+Register number for frame pointer : $30
+
+2. OS/161 supports LAMEbus. What is its base address?
+
+#define MIPS_KSEG1  0xa0000000
+/* Base address of the LAMEbus mapping area */
+#define LB_BASEADDR  (MIPS_KSEG1 + 0x1fe00000)
+
+3. What is SPLHIGH and what is curspl?
+
+ - splhigh() - sets spl to the highest value, disabling all interrupts.
+ - curspl holds the current spl level.
+ 
+Note:  "spl" stands for "set priority level", and was originally the name of
+            a VAX assembler instruction.
+
+4. What is the size of a VM page in OS/161?
+#define PAGE_SIZE  4096         /* size of VM page */
+
+The Size of a VM page is 4096.
+
+
+5. What does splx take as input?
+
+splx takes SPL_HIGH or 0 as input
+
+splhigh()- sets spl to the highest value, disabling all interrupts.
+ "spl" stands for "set priority level"
+
+
+Question 6. Which register is used for interrupt priority masking in OS/161? 
+
+While the mips actually has on-chip interrupt priority masking, in the interests of simplicity, we don't use it. Instead we use coprocessor 0 register 12 (the system coprocessor "status" register) bit 0, IEc, which is the global interrupt enable flag.
+ 
+Note: (IEc stands for interrupt-enable-current.)
+
+Question 7. How many hardclock interrupts per second are possible in the fastest speed?
+In the fastest speed 10000 hardclock interrupts are possible however the more realistic value would be 100.
+
+/* hardclocks per second */
+#if OPT_SYNCHPROBS
+/* Make synchronization more exciting :) */
+#define HZ  10000
+#else
+/* More realistic value */
+#define HZ  100
+#endif
+ 
+·         Note: hardclock() is called from the timer interrupt HZ times a second.
+
+
+
+Question 8. How large are OS/161 pids? How many processes do you think OS/161 could support as you have it now? A sentence or two of justification is fine.
+
+Question 9. What is the system call number for a reboot? Is this value available to userspace programs? Why or why not .
+
+#define SYS_reboot       8
+
+The system call number for reboot: 8.
+
+
+
+Question 10. What is the purpose of functions like copyin and copyout in copyinout.c? What do they protect against? Where might you want to use these functions?
+
+
+  copyin() : Copy a block of memory of length LEN from user-level address USERSRC to kernel address DEST. We can use memcpy because it's protected by the pcb_badfaultfunc/copyfail logic.
+
+ copyout : Copy a block of memory of length LEN from kernel address SRC to user-level address USERDEST. We can use memcpy because it's protected by the pcb_badfaultfunc/copyfail logic.
+
+They can be used to prevent fatal kernel memory faults if invalid addresses are supplied by user-level code.  If a fatal fault occurs during copyin and copyout, execution resumes from a the function before fault function execution.
+ 
+
+
+
+
+Question 11 Is it OK to initialize the thread system before the scheduler? Why (not)?
+
+Question 12. What are the possible states that a thread can be in? When do "zombie" threads finally get cleaned up?
+
+Four states - Run, Ready, Sleep, Zombie.
+/* States a thread can be in. */
+typedef enum {
+        S_RUN,
+        S_READY,
+        S_SLEEP,
+        S_ZOMB,
+} threadstate_t;
+ 
+/*
+ * Remove zombies. (Zombies are threads/processes that have exited but not
+ * been fully deleted yet.)
+ */
+static
+void
+exorcise(void)
+{
+	int i, result;
+ 
+	assert(curspl>0);
+	
+	for (i=0; i<array_getnum(zombies); i++) {
+    	struct thread *z = array_getguy(zombies, i);
+    	assert(z!=curthread);
+    	thread_destroy(z);
+	}
+	result = array_setsize(zombies, 0);
+	/* Shrinking the array; not supposed to be able to fail. */
+	assert(result==0);
+}
+
+/*
+ * Thread final cleanup.
+ */
+
+void
+thread_shutdown(void)
+{
+        array_destroy(sleepers);
+        sleepers = NULL;
+        array_destroy(zombies);
+        zombies = NULL;
+        // Don't do this - it frees our stack and we blow up
+        //thread_destroy(curthread);
+}
+
+Answer: The thread_shutdown(void) will clean up the Zombie thread.
+
+Question 13. What function puts a thread to sleep? When might you want to use this function?
+ 
+
+void
+thread_sleep(const void *addr)    // will put the thread to sleep state
+{
+	// may not sleep in an interrupt handler
+	assert(in_interrupt==0);
+	
+	curthread->t_sleepaddr = addr;
+	mi_switch(S_SLEEP);
+	curthread->t_sleepaddr = NULL;
+}
+Whenever the thread is idle or caught in a deadlock situation, then the thread_sleep could be used. You can make the same thread runnable again by thread_wakeup with the same value of ADDR used to put the thread to sleep.
+

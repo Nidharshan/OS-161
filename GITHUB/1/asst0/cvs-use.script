@@ -1,0 +1,2045 @@
+Script started on Sun Sep 14 22:12:02 2014
+[?1034hbash-4.1$ exitcvs diff -c main.c
+Index: main.c
+===================================================================
+RCS file: /home/nkumar9/os161/cvsroot/src/kern/main/main.c,v
+retrieving revision 1.3
+diff -c -r1.3 main.c
+*** main.c	15 Sep 2014 01:39:03 -0000	1.3
+--- main.c	15 Sep 2014 02:11:57 -0000
+***************
+*** 25,31 ****
+   * The purpose is not to show off how many kernels you've linked, but
+   * to make it easy to make sure that the kernel you just booted is the
+   * same one you just built.
+!  * Rebel and Nidharshan- OS 571.
+   */
+  extern const int buildversion;
+  extern const char buildconfig[];
+--- 25,31 ----
+   * The purpose is not to show off how many kernels you've linked, but
+   * to make it easy to make sure that the kernel you just booted is the
+   * same one you just built.
+!  * Rebel and Nidharshan Kumar-OS.
+   */
+  extern const int buildversion;
+  extern const char buildconfig[];
+bash-4.1$ cvs commit
+cvs commit: Examining .
+[?1049h[?1h=[1;24r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[24;1H"/tmp/cvsN9UVZ8" 9L, 292C[2;1HCVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS:
+CVS: Committing in .
+CVS:
+CVS: Modified Files:
+CVS:    main.c
+CVS: ----------------------------------------------------------------------
+[94m~                                                                               [11;1H~                                                                               [12;1H~                                                                               [13;1H~                                                                               [14;1H~                                                                               [15;1H~                                                                               [16;1H~                                                                               [17;1H~                                                                               [18;1H~                                                                               [19;1H~                                                                               [20;1H~                                                                               [21;1H~                                                                               [22;1H~                                                                               [23;1H~                                                                               [1;1H[?12l[?25h[?25l[m[24;1H[K[24;1H:[?12l[?25hwq[?25l"/tmp/cvsN9UVZ8" 9L, 292C written
+[?1l>[?12l[?25h[?1049l
+Log message unchanged or not specified
+a)bort, c)ontinue, e)dit, !)reuse this message unchanged for remaining dirs
+Action: (continue) c
+Checking in main.c;
+/home/nkumar9/os161/cvsroot/src/kern/main/main.c,v  <--  main.c
+new revision: 1.4; previous revision: 1.3
+done
+bash-4.1$ cd ~/os161/src
+bash-4.1$ ./configure --ostree=$HOME/os161/root 
+Checking for ranlib... yes
+Checking for <err.h>... yes
+Generating defs.mk.
+bash-4.1$ cd kern/conf
+bash-4.1$ ./config ASST0
+Configuration ASST0
+Generating files... opt-*.h files.mk defs.mk Makefile autoconf.h autoconf.c
+Configuration in ../compile/ASST0 done
+Remember to make depend
+bash-4.1$ cd ../compile/ASST0
+bash-4.1$ make depend
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -M ../../dev/lamebus/lhd.c ../../dev/lamebus/emu.c ../../dev/generic/random.c ../../dev/generic/rtclock.c ../../dev/generic/pseudorand.c ../../dev/lamebus/ltrace.c ../../dev/lamebus/lamebus.c ../../dev/generic/console.c ../../dev/lamebus/lser.c ../../dev/generic/beep.c ../../dev/lamebus/lrandom.c ../../dev/lamebus/ltimer.c ../../dev/lamebus/rtclock_ltimer.c ../../dev/lamebus/emu_att.c ../../dev/lamebus/random_lrandom.c ../../dev/lamebus/beep_ltimer.c ../../dev/lamebus/ltrace_att.c ../../dev/generic/pseudorand_att.c ../../dev/lamebus/con_lser.c ../../dev/lamebus/lrandom_att.c ../../dev/lamebus/lser_att.c ../../dev/lamebus/lhd_att.c ../../dev/lamebus/ltimer_att.c ../../fs/sfs/sfs_io.c ../../fs/sfs/sfs_fs.c ../../fs/sfs/sfs_vnode.c ../../arch/mips/mips/dumbvm.c ../../arch/mips/mips/cache_mips1.S ../../arch/mips/mips/exception.S ../../arch/mips/mips/lamebus_mips.c ../../arch/mips/mips/interrupt.c ../../arch/mips/mips/pcb.c ../../arch/mips/mips/ram.c ../../arch/mips/mips/spl.c ../../arch/mips/mips/start.S ../../arch/mips/mips/switch.S ../../arch/mips/mips/syscall.c ../../arch/mips/mips/threadstart.S ../../arch/mips/mips/trap.c ../../arch/mips/mips/tlb_mips1.S ../../../lib/libc/mips-setjmp.S ../../lib/copyinout.c ../../lib/array.c ../../lib/bitmap.c ../../lib/queue.c ../../lib/kheap.c ../../lib/kprintf.c ../../lib/kgets.c ../../lib/misc.c ../../lib/ntoh.c ../../../lib/libc/__printf.c ../../../lib/libc/snprintf.c ../../../lib/libc/atoi.c ../../../lib/libc/bzero.c ../../../lib/libc/memcpy.c ../../../lib/libc/memmove.c ../../../lib/libc/strcat.c ../../../lib/libc/strchr.c ../../../lib/libc/strcmp.c ../../../lib/libc/strcpy.c ../../../lib/libc/strlen.c ../../../lib/libc/strrchr.c ../../../lib/libc/strtok_r.c ../../dev/init.c ../../fs/vfs/device.c ../../fs/vfs/vfscwd.c ../../fs/vfs/vfslist.c ../../fs/vfs/vfslookup.c ../../fs/vfs/vfspath.c ../../fs/vfs/vnode.c ../../fs/vfs/devnull.c ../../thread/hardclock.c ../../thread/synch.c ../../thread/scheduler.c ../../thread/thread.c ../../main/main.c ../../main/menu.c ../../userprog/loadelf.c ../../userprog/runprogram.c ../../userprog/uio.c ../../test/arraytest.c ../../test/bitmaptest.c ../../test/queuetest.c ../../test/threadtest.c ../../test/tt3.c ../../test/synchtest.c ../../test/malloctest.c ../../test/fstest.c ../../compile/ASST0/autoconf.c > depend.mk
+bash-4.1$ make
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../main/main.c
+../../main/main.c:2: warning: data definition has no type or storage class
+../../main/main.c:2: warning: type defaults to 'int' in declaration of 'vfs_clearbootfs'
+../../main/main.c:3: warning: data definition has no type or storage class
+../../main/main.c:3: warning: type defaults to 'int' in declaration of 'vfs_clearcurdir'
+../../main/main.c:4: warning: data definition has no type or storage class
+../../main/main.c:4: warning: type defaults to 'int' in declaration of 'vfs_unmountall'
+../../main/main.c:6: warning: data definition has no type or storage class
+../../main/main.c:6: warning: type defaults to 'int' in declaration of 'splhigh'
+../../main/main.c:8: warning: data definition has no type or storage class
+../../main/main.c:8: warning: type defaults to 'int' in declaration of 'scheduler_shutdown'
+../../main/main.c:9: warning: data definition has no type or storage class
+../../main/main.c:9: warning: type defaults to 'int' in declaration of 'thread_shutdown'
+../../main/main.c:10: error: expected identifier or '(' before '}' token
+../../main/main.c: In function 'sys_reboot':
+../../main/main.c:25: error: 'RB_REBOOT' undeclared (first use in this function)
+../../main/main.c:25: error: (Each undeclared identifier is reported only once
+../../main/main.c:25: error: for each function it appears in.)
+../../main/main.c:26: error: 'RB_HALT' undeclared (first use in this function)
+../../main/main.c:27: error: 'RB_POWEROFF' undeclared (first use in this function)
+../../main/main.c:30: error: 'EINVAL' undeclared (first use in this function)
+../../main/main.c:33: warning: implicit declaration of function 'shutdown'
+../../main/main.c:37: warning: implicit declaration of function 'kprintf'
+../../main/main.c:38: warning: implicit declaration of function 'md_halt'
+../../main/main.c:42: warning: implicit declaration of function 'md_reboot'
+../../main/main.c:46: warning: implicit declaration of function 'md_poweroff'
+../../main/main.c:50: warning: implicit declaration of function 'panic'
+../../main/main.c: In function 'kmain':
+../../main/main.c:61: warning: implicit declaration of function 'boot'
+../../main/main.c:63: warning: implicit declaration of function 'menu'
+make: *** [main.o] Error 1
+bash-4.1$ cd cd ~/os161/src/kern/main/
+bash: cd: cd: No such file or directory
+bash-4.1$ cd cd ~/os161/src/kern/main/[C[C[C[C[C[C[C[C[C[C[Kcd cd ~/os161/src/kern/main/[1P[1P[1P
+bash-4.1$ rm main.c
+bash-4.1$ cvs cvs[K[K[Kupdate -d main.c
+cvs update: warning: main.c was lost
+U main.c
+bash-4.1$ cd ~/os161/src
+bash-4.1$ ./configure --ostree=$HOME/os161/root 
+Checking for ranlib... yes
+Checking for <err.h>... yes
+Generating defs.mk.
+bash-4.1$ cd kern/conf
+bash-4.1$ ./config ASST0
+Configuration ASST0
+Generating files... opt-*.h files.mk defs.mk Makefile autoconf.h autoconf.c
+Configuration in ../compile/ASST0 done
+Remember to make depend
+bash-4.1$ cd ../compile/ASST0
+bash-4.1$ make depend
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -M ../../dev/lamebus/lhd.c ../../dev/lamebus/emu.c ../../dev/generic/random.c ../../dev/generic/rtclock.c ../../dev/generic/pseudorand.c ../../dev/lamebus/ltrace.c ../../dev/lamebus/lamebus.c ../../dev/generic/console.c ../../dev/lamebus/lser.c ../../dev/generic/beep.c ../../dev/lamebus/lrandom.c ../../dev/lamebus/ltimer.c ../../dev/lamebus/rtclock_ltimer.c ../../dev/lamebus/emu_att.c ../../dev/lamebus/random_lrandom.c ../../dev/lamebus/beep_ltimer.c ../../dev/lamebus/ltrace_att.c ../../dev/generic/pseudorand_att.c ../../dev/lamebus/con_lser.c ../../dev/lamebus/lrandom_att.c ../../dev/lamebus/lser_att.c ../../dev/lamebus/lhd_att.c ../../dev/lamebus/ltimer_att.c ../../fs/sfs/sfs_io.c ../../fs/sfs/sfs_fs.c ../../fs/sfs/sfs_vnode.c ../../arch/mips/mips/dumbvm.c ../../arch/mips/mips/cache_mips1.S ../../arch/mips/mips/exception.S ../../arch/mips/mips/lamebus_mips.c ../../arch/mips/mips/interrupt.c ../../arch/mips/mips/pcb.c ../../arch/mips/mips/ram.c ../../arch/mips/mips/spl.c ../../arch/mips/mips/start.S ../../arch/mips/mips/switch.S ../../arch/mips/mips/syscall.c ../../arch/mips/mips/threadstart.S ../../arch/mips/mips/trap.c ../../arch/mips/mips/tlb_mips1.S ../../../lib/libc/mips-setjmp.S ../../lib/copyinout.c ../../lib/array.c ../../lib/bitmap.c ../../lib/queue.c ../../lib/kheap.c ../../lib/kprintf.c ../../lib/kgets.c ../../lib/misc.c ../../lib/ntoh.c ../../../lib/libc/__printf.c ../../../lib/libc/snprintf.c ../../../lib/libc/atoi.c ../../../lib/libc/bzero.c ../../../lib/libc/memcpy.c ../../../lib/libc/memmove.c ../../../lib/libc/strcat.c ../../../lib/libc/strchr.c ../../../lib/libc/strcmp.c ../../../lib/libc/strcpy.c ../../../lib/libc/strlen.c ../../../lib/libc/strrchr.c ../../../lib/libc/strtok_r.c ../../dev/init.c ../../fs/vfs/device.c ../../fs/vfs/vfscwd.c ../../fs/vfs/vfslist.c ../../fs/vfs/vfslookup.c ../../fs/vfs/vfspath.c ../../fs/vfs/vnode.c ../../fs/vfs/devnull.c ../../thread/hardclock.c ../../thread/synch.c ../../thread/scheduler.c ../../thread/thread.c ../../main/main.c ../../main/menu.c ../../userprog/loadelf.c ../../userprog/runprogram.c ../../userprog/uio.c ../../test/arraytest.c ../../test/bitmaptest.c ../../test/queuetest.c ../../test/threadtest.c ../../test/tt3.c ../../test/synchtest.c ../../test/malloctest.c ../../test/fstest.c ../../compile/ASST0/autoconf.c > depend.mk
+bash-4.1$ make
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../main/main.c
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../compile/ASST0/autoconf.c
+../../conf/newvers.sh ASST0
+*** This is ASST0 build #13 ***
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c vers.c
+cs161-ld   -nostdlib -Ttext 0x80001000 -T ../../arch/mips/conf/ldscript -G 0 lhd.o emu.o random.o rtclock.o pseudorand.o ltrace.o lamebus.o console.o lser.o beep.o lrandom.o ltimer.o rtclock_ltimer.o emu_att.o random_lrandom.o beep_ltimer.o ltrace_att.o pseudorand_att.o con_lser.o lrandom_att.o lser_att.o lhd_att.o ltimer_att.o sfs_io.o sfs_fs.o sfs_vnode.o dumbvm.o cache_mips1.o exception.o lamebus_mips.o interrupt.o pcb.o ram.o spl.o start.o switch.o syscall.o threadstart.o trap.o tlb_mips1.o mips-setjmp.o copyinout.o array.o bitmap.o queue.o kheap.o kprintf.o kgets.o misc.o ntoh.o __printf.o snprintf.o atoi.o bzero.o memcpy.o memmove.o strcat.o strchr.o strcmp.o strcpy.o strlen.o strrchr.o strtok_r.o init.o device.o vfscwd.o vfslist.o vfslookup.o vfspath.o vnode.o devnull.o hardclock.o synch.o scheduler.o thread.o main.o menu.o loadelf.o runprogram.o uio.o arraytest.o bitmaptest.o queuetest.o threadtest.o tt3.o synchtest.o malloctest.o fstest.o autoconf.o vers.o -o kernel
+cs161-size kernel
+   text	   data	    bss	    dec	    hex	filename
+ 161576	    464	   7668	 169708	  296ec	kernel
+bash-4.1$ make install
+[ -d /home/nkumar9/os161/root ] || mkdir /home/nkumar9/os161/root
+cp kernel /home/nkumar9/os161/root/kernel-ASST0
+rm -f /home/nkumar9/os161/root/kernel
+ln -s kernel-ASST0 /home/nkumar9/os161/root/kernel
+bash-4.1$ cd ~/os161/src
+bash-4.1$ cd ~/os161/src[C[C[C[C[C[C[C[C[C[C[Kcvs diff -c
+cvs diff: Diffing .
+cvs diff: Diffing bin
+cvs diff: Diffing bin/cat
+cvs diff: Diffing bin/cp
+cvs diff: Diffing bin/false
+cvs diff: Diffing bin/ln
+cvs diff: Diffing bin/ls
+cvs diff: Diffing bin/mkdir
+cvs diff: Diffing bin/mv
+cvs diff: Diffing bin/pwd
+cvs diff: Diffing bin/rm
+cvs diff: Diffing bin/rmdir
+cvs diff: Diffing bin/sh
+cvs diff: Diffing bin/sync
+cvs diff: Diffing bin/true
+cvs diff: Diffing include
+cvs diff: Diffing include/sys
+cvs diff: Diffing kern
+cvs diff: Diffing kern/arch
+cvs diff: Diffing kern/arch/mips
+cvs diff: Diffing kern/arch/mips/conf
+cvs diff: Diffing kern/arch/mips/include
+cvs diff: Diffing kern/arch/mips/mips
+Index: kern/arch/mips/mips/dumbvm.c
+===================================================================
+RCS file: /home/nkumar9/os161/cvsroot/src/kern/arch/mips/mips/dumbvm.c,v
+retrieving revision 1.2
+diff -c -r1.2 dumbvm.c
+*** kern/arch/mips/mips/dumbvm.c	14 Sep 2014 22:24:04 -0000	1.2
+--- kern/arch/mips/mips/dumbvm.c	15 Sep 2014 00:05:12 -0000
+***************
+*** 68,80 ****
+  	u_int32_t ehi, elo;
+  	struct addrspace *as;
+  	int spl;
+! 
+  	spl = splhigh();
+  
+  	faultaddress &= PAGE_FRAME;
+  
+  	DEBUG(DB_VM, "dumbvm: fault: 0x%x\n", faultaddress);
+-         DEBUG(DB_VM, "I AM INSIDE DUMBVM- DM_VM");
+  	switch (faulttype) {
+  	    case VM_FAULT_READONLY:
+  		/* We always create pages read-write, so we can't get this */
+--- 68,79 ----
+  	u_int32_t ehi, elo;
+  	struct addrspace *as;
+  	int spl;
+!         DEBUG(DB_VM, " Implement Virtual Memory here\nSets spl to the highest value\n");
+  	spl = splhigh();
+  
+  	faultaddress &= PAGE_FRAME;
+  
+  	DEBUG(DB_VM, "dumbvm: fault: 0x%x\n", faultaddress);
+  	switch (faulttype) {
+  	    case VM_FAULT_READONLY:
+  		/* We always create pages read-write, so we can't get this */
+Index: kern/arch/mips/mips/interrupt.c
+===================================================================
+RCS file: /home/nkumar9/os161/cvsroot/src/kern/arch/mips/mips/interrupt.c,v
+retrieving revision 1.1.1.1
+diff -c -r1.1.1.1 interrupt.c
+*** kern/arch/mips/mips/interrupt.c	11 Sep 2014 01:50:57 -0000	1.1.1.1
+--- kern/arch/mips/mips/interrupt.c	15 Sep 2014 00:20:46 -0000
+***************
+*** 21,27 ****
+  	int old_in = in_interrupt;
+  	in_interrupt = 1;
+  
+! 	/* interrupts should be off */
+  	assert(curspl>0);
+  
+  	if (cause & LAMEBUS_IRQ_BIT) {
+--- 21,27 ----
+  	int old_in = in_interrupt;
+  	in_interrupt = 1;
+  
+! 	DEBUG(DB_INTERRUPT, "Interrupts should be off ");
+  	assert(curspl>0);
+  
+  	if (cause & LAMEBUS_IRQ_BIT) {
+Index: kern/arch/mips/mips/lamebus_mips.c
+===================================================================
+RCS file: /home/nkumar9/os161/cvsroot/src/kern/arch/mips/mips/lamebus_mips.c,v
+retrieving revision 1.1.1.1
+diff -c -r1.1.1.1 lamebus_mips.c
+*** kern/arch/mips/mips/lamebus_mips.c	11 Sep 2014 01:50:57 -0000	1.1.1.1
+--- kern/arch/mips/mips/lamebus_mips.c	15 Sep 2014 00:24:04 -0000
+***************
+*** 18,24 ****
+  	/* Interrupts should be off (and have been off since startup) */
+  	assert(curspl>0);
+  
+! 	/* Initialize the system LAMEbus data */
+  	lamebus = lamebus_init();
+  
+  	/*
+--- 18,24 ----
+  	/* Interrupts should be off (and have been off since startup) */
+  	assert(curspl>0);
+  
+! 	DEBUG(DB_LOCORE, "Initialize the system lamebus data ");
+  	lamebus = lamebus_init();
+  
+  	/*
+Index: kern/arch/mips/mips/pcb.c
+===================================================================
+RCS file: /home/nkumar9/os161/cvsroot/src/kern/arch/mips/mips/pcb.c,v
+retrieving revision 1.1.1.1
+diff -c -r1.1.1.1 pcb.c
+*** kern/arch/mips/mips/pcb.c	11 Sep 2014 01:50:57 -0000	1.1.1.1
+--- kern/arch/mips/mips/pcb.c	15 Sep 2014 00:27:53 -0000
+***************
+*** 120,130 ****
+  	if (old==nu) {
+  		return;
+  	}
+! 	/*
+! 	 * Note: we don't need to switch curspl, because splhigh()
+! 	 * should always be in effect when we get here and when we
+! 	 * leave here.
+! 	 */
+  
+  	old->pcb_kstack = curkstack;
+  	old->pcb_ininterrupt = in_interrupt;
+--- 120,126 ----
+  	if (old==nu) {
+  		return;
+  	}
+! 		DEBUG(DB_DEVICE, "Note: we don't need to switch curspl, because splhigh() should always be in effect when we get here and when we leave here.");
+  
+  	old->pcb_kstack = curkstack;
+  	old->pcb_ininterrupt = in_interrupt;
+Index: kern/arch/mips/mips/ram.c
+===================================================================
+RCS file: /home/nkumar9/os161/cvsroot/src/kern/arch/mips/mips/ram.c,v
+retrieving revision 1.1.1.1
+diff -c -r1.1.1.1 ram.c
+*** kern/arch/mips/mips/ram.c	11 Sep 2014 01:50:57 -0000	1.1.1.1
+--- kern/arch/mips/mips/ram.c	15 Sep 2014 02:00:46 -0000
+***************
+*** 76,86 ****
+  	return paddr;
+  }
+  
+! /*
+!  * This function is intended to be called by the VM system when it
+!  * initializes in order to find out what memory it has available to
+!  * manage.
+!  */
+  void
+  ram_getsize(u_int32_t *lo, u_int32_t *hi)
+  {
+--- 76,83 ----
+  	return paddr;
+  }
+  
+! //DEBUG(DB_THREADS, "This function is intended to be called by the VM system when it initializes in order to find out what memory it has available to manage.");
+! 
+  void
+  ram_getsize(u_int32_t *lo, u_int32_t *hi)
+  {
+Index: kern/arch/mips/mips/syscall.c
+===================================================================
+RCS file: /home/nkumar9/os161/cvsroot/src/kern/arch/mips/mips/syscall.c,v
+retrieving revision 1.1.1.1
+diff -c -r1.1.1.1 syscall.c
+*** kern/arch/mips/mips/syscall.c	11 Sep 2014 01:50:57 -0000	1.1.1.1
+--- kern/arch/mips/mips/syscall.c	15 Sep 2014 00:34:58 -0000
+***************
+*** 88,99 ****
+  		 * code in errno.
+  		 */
+  		tf->tf_v0 = err;
+! 		tf->tf_a3 = 1;      /* signal an error */
+  	}
+  	else {
+  		/* Success. */
+  		tf->tf_v0 = retval;
+! 		tf->tf_a3 = 0;      /* signal no error */
+  	}
+  	
+  	/*
+--- 88,99 ----
+  		 * code in errno.
+  		 */
+  		tf->tf_v0 = err;
+! 		tf->tf_a3 = 1;      DEBUG(DB_EXEC, "Signal an Error");
+  	}
+  	else {
+  		/* Success. */
+  		tf->tf_v0 = retval;
+! 		tf->tf_a3 = 0;      DEBUG(DB_VFS, "Signal no Error");
+  	}
+  	
+  	/*
+Index: kern/arch/mips/mips/trap.c
+===================================================================
+RCS file: /home/nkumar9/os161/cvsroot/src/kern/arch/mips/mips/trap.c,v
+retrieving revision 1.2
+diff -c -r1.2 trap.c
+*** kern/arch/mips/mips/trap.c	14 Sep 2014 22:24:05 -0000	1.2
+--- kern/arch/mips/mips/trap.c	15 Sep 2014 00:09:23 -0000
+***************
+*** 98,109 ****
+  
+  	/* Syscall? Call the syscall handler and return. */
+  	if (code == EX_SYS) {
+! 		/* Interrupts should have been on while in user mode. */
+  		assert(curspl==0);
+  
+  		DEBUG(DB_SYSCALL, "syscall: #%d, args %x %x %x %x\n", 
+  		      tf->tf_v0, tf->tf_a0, tf->tf_a1, tf->tf_a2, tf->tf_a3);
+-                 DEBUG(DB_SYSCALL, "I am inside DEBUG- DB_SYSCALL\n");
+  		mips_syscall(tf);
+  		goto done;
+  	}
+--- 98,108 ----
+  
+  	/* Syscall? Call the syscall handler and return. */
+  	if (code == EX_SYS) {
+! 		DEBUG(DB_SYSCALL, "\nInterrupts should have been on while in user mode.");
+  		assert(curspl==0);
+  
+  		DEBUG(DB_SYSCALL, "syscall: #%d, args %x %x %x %x\n", 
+  		      tf->tf_v0, tf->tf_a0, tf->tf_a1, tf->tf_a2, tf->tf_a3);
+  		mips_syscall(tf);
+  		goto done;
+  	}
+cvs diff: Diffing kern/asst1
+cvs diff: Diffing kern/compile
+cvs diff: Diffing kern/conf
+cvs diff: Diffing kern/dev
+cvs diff: Diffing kern/dev/generic
+cvs diff: Diffing kern/dev/lamebus
+cvs diff: Diffing kern/fs
+cvs diff: Diffing kern/fs/sfs
+Index: kern/fs/sfs/sfs_fs.c
+===================================================================
+RCS file: /home/nkumar9/os161/cvsroot/src/kern/fs/sfs/sfs_fs.c,v
+retrieving revision 1.1.1.1
+diff -c -r1.1.1.1 sfs_fs.c
+*** kern/fs/sfs/sfs_fs.c	11 Sep 2014 01:50:59 -0000	1.1.1.1
+--- kern/fs/sfs/sfs_fs.c	15 Sep 2014 00:37:48 -0000
+***************
+*** 64,70 ****
+  			result = sfs_wblock(sfs, ptr, SFS_MAP_LOCATION+j);
+  		}
+  
+! 		/* If we failed, stop. */
+  		if (result) {
+  			return result;
+  		}
+--- 64,70 ----
+  			result = sfs_wblock(sfs, ptr, SFS_MAP_LOCATION+j);
+  		}
+  
+! 		DEBUG(DB_SFS, "If failed- STOP");
+  		if (result) {
+  			return result;
+  		}
+Index: kern/fs/sfs/sfs_io.c
+===================================================================
+RCS file: /home/nkumar9/os161/cvsroot/src/kern/fs/sfs/sfs_io.c,v
+retrieving revision 1.1.1.1
+diff -c -r1.1.1.1 sfs_io.c
+*** kern/fs/sfs/sfs_io.c	11 Sep 2014 01:50:59 -0000	1.1.1.1
+--- kern/fs/sfs/sfs_io.c	15 Sep 2014 00:40:17 -0000
+***************
+*** 32,37 ****
+--- 32,38 ----
+  		 * or the seek address we gave wasn't sector-aligned,
+  		 * or a couple of other things that are our fault.
+  		 */
++ DEBUG(DB_NET, "This means the sector we requested was out of range, or the seek address we gave wasn't sector-aligned, or a couple of other things that are our fault.");
+  		panic("sfs: d_io returned EINVAL\n");
+  	}
+  	if (result == EIO) {
+Index: kern/fs/sfs/sfs_vnode.c
+===================================================================
+RCS file: /home/nkumar9/os161/cvsroot/src/kern/fs/sfs/sfs_vnode.c,v
+retrieving revision 1.1.1.1
+diff -c -r1.1.1.1 sfs_vnode.c
+*** kern/fs/sfs/sfs_vnode.c	11 Sep 2014 01:50:59 -0000	1.1.1.1
+--- kern/fs/sfs/sfs_vnode.c	15 Sep 2014 02:07:13 -0000
+***************
+*** 73,79 ****
+  		panic("sfs: balloc: invalid block %u\n", *diskblock);
+  	}
+  
+! 	/* Clear block before returning it */
+  	return sfs_clearblock(sfs, *diskblock);
+  }
+  
+--- 73,79 ----
+  		panic("sfs: balloc: invalid block %u\n", *diskblock);
+  	}
+  
+! 	DEBUG(DB_NET,"Clear block before returning it");
+  	return sfs_clearblock(sfs, *diskblock);
+  }
+  
+cvs diff: Diffing kern/fs/vfs
+cvs diff: Diffing kern/include
+cvs diff: Diffing kern/include/kern
+cvs diff: Diffing kern/lib
+Index: kern/lib/kprintf.c
+===================================================================
+RCS file: /home/nkumar9/os161/cvsroot/src/kern/lib/kprintf.c,v
+retrieving revision 1.2
+diff -c -r1.2 kprintf.c
+*** kern/lib/kprintf.c	14 Sep 2014 22:24:42 -0000	1.2
+--- kern/lib/kprintf.c	14 Sep 2014 23:19:02 -0000
+***************
+*** 9,15 ****
+  #include <machine/spl.h>
+  
+  /* Flags word for DEBUG() macro. */
+! u_int32_t dbflags = DB_SYSCALL;
+  /* Lock for non-polled kprintfs */
+  static struct lock *kprintf_lock;
+  
+--- 9,15 ----
+  #include <machine/spl.h>
+  
+  /* Flags word for DEBUG() macro. */
+! u_int32_t dbflags = DB_SYSCALL| DB_LOCORE | DB_INTERRUPT| DB_DEVICE| DB_THREADS| DB_VM| DB_EXEC| DB_VFS| DB_SFS| DB_NET| DB_NETFS| DB_KMALLOC;
+  /* Lock for non-polled kprintfs */
+  static struct lock *kprintf_lock;
+  
+cvs diff: Diffing kern/main
+cvs diff: Diffing kern/test
+cvs diff: Diffing kern/thread
+cvs diff: Diffing kern/userprog
+cvs diff: Diffing kern/vm
+cvs diff: Diffing lib
+cvs diff: Diffing lib/crt0
+cvs diff: Diffing lib/hostcompat
+cvs diff: Diffing lib/libc
+cvs diff: Diffing man
+cvs diff: Diffing man/bin
+cvs diff: Diffing man/dev
+cvs diff: Diffing man/libc
+cvs diff: Diffing man/misc
+cvs diff: Diffing man/sbin
+cvs diff: Diffing man/syscall
+cvs diff: Diffing man/testbin
+cvs diff: Diffing man/toplevel
+cvs diff: Diffing mk
+cvs diff: Diffing sbin
+cvs diff: Diffing sbin/dumpsfs
+cvs diff: Diffing sbin/halt
+cvs diff: Diffing sbin/mksfs
+cvs diff: Diffing sbin/poweroff
+cvs diff: Diffing sbin/reboot
+cvs diff: Diffing testbin
+cvs diff: Diffing testbin/add
+cvs diff: Diffing testbin/argtest
+cvs diff: Diffing testbin/badcall
+cvs diff: Diffing testbin/bigfile
+cvs diff: Diffing testbin/conman
+cvs diff: Diffing testbin/crash
+cvs diff: Diffing testbin/ctest
+cvs diff: Diffing testbin/dirconc
+cvs diff: Diffing testbin/dirseek
+cvs diff: Diffing testbin/dirtest
+cvs diff: Diffing testbin/f_test
+cvs diff: Diffing testbin/farm
+cvs diff: Diffing testbin/faulter
+cvs diff: Diffing testbin/filetest
+cvs diff: Diffing testbin/forkbomb
+cvs diff: Diffing testbin/forktest
+cvs diff: Diffing testbin/guzzle
+cvs diff: Diffing testbin/hash
+cvs diff: Diffing testbin/hog
+cvs diff: Diffing testbin/huge
+cvs diff: Diffing testbin/kitchen
+cvs diff: Diffing testbin/malloctest
+cvs diff: Diffing testbin/matmult
+cvs diff: Diffing testbin/palin
+cvs diff: Diffing testbin/parallelvm
+cvs diff: Diffing testbin/randcall
+cvs diff: Diffing testbin/rmdirtest
+cvs diff: Diffing testbin/rmtest
+cvs diff: Diffing testbin/sink
+cvs diff: Diffing testbin/sort
+cvs diff: Diffing testbin/sty
+cvs diff: Diffing testbin/tail
+cvs diff: Diffing testbin/tictac
+cvs diff: Diffing testbin/triplehuge
+cvs diff: Diffing testbin/triplemat
+cvs diff: Diffing testbin/triplesort
+cvs diff: Diffing testbin/userthreads
+bash-4.1$ cd ~nbv[K[K[K/0s161[1Ps161os161
+bash-4.1$ cvs tag asst0-end src
+cvs tag: Tagging src
+T src/.cvsignore
+T src/CHANGES
+T src/COPYING
+T src/Makefile
+T src/configure
+T src/defs.mk.sample
+cvs tag: Tagging src/bin
+T src/bin/Makefile
+cvs tag: Tagging src/bin/cat
+T src/bin/cat/.cvsignore
+T src/bin/cat/Makefile
+T src/bin/cat/cat.c
+T src/bin/cat/depend.mk
+cvs tag: Tagging src/bin/cp
+T src/bin/cp/.cvsignore
+T src/bin/cp/Makefile
+T src/bin/cp/cp.c
+T src/bin/cp/depend.mk
+cvs tag: Tagging src/bin/false
+T src/bin/false/.cvsignore
+T src/bin/false/Makefile
+T src/bin/false/depend.mk
+T src/bin/false/false.c
+cvs tag: Tagging src/bin/ln
+T src/bin/ln/.cvsignore
+T src/bin/ln/Makefile
+T src/bin/ln/depend.mk
+T src/bin/ln/ln.c
+cvs tag: Tagging src/bin/ls
+T src/bin/ls/.cvsignore
+T src/bin/ls/Makefile
+T src/bin/ls/depend.mk
+T src/bin/ls/ls.c
+cvs tag: Tagging src/bin/mkdir
+T src/bin/mkdir/.cvsignore
+T src/bin/mkdir/Makefile
+T src/bin/mkdir/depend.mk
+T src/bin/mkdir/mkdir.c
+cvs tag: Tagging src/bin/mv
+T src/bin/mv/.cvsignore
+T src/bin/mv/Makefile
+T src/bin/mv/depend.mk
+T src/bin/mv/mv.c
+cvs tag: Tagging src/bin/pwd
+T src/bin/pwd/.cvsignore
+T src/bin/pwd/Makefile
+T src/bin/pwd/depend.mk
+T src/bin/pwd/pwd.c
+cvs tag: Tagging src/bin/rm
+T src/bin/rm/.cvsignore
+T src/bin/rm/Makefile
+T src/bin/rm/depend.mk
+T src/bin/rm/rm.c
+cvs tag: Tagging src/bin/rmdir
+T src/bin/rmdir/.cvsignore
+T src/bin/rmdir/Makefile
+T src/bin/rmdir/depend.mk
+T src/bin/rmdir/rmdir.c
+cvs tag: Tagging src/bin/sh
+T src/bin/sh/.cvsignore
+T src/bin/sh/Makefile
+T src/bin/sh/depend.mk
+T src/bin/sh/dependh.mk
+T src/bin/sh/sh.c
+cvs tag: Tagging src/bin/sync
+T src/bin/sync/.cvsignore
+T src/bin/sync/Makefile
+T src/bin/sync/depend.mk
+T src/bin/sync/sync.c
+cvs tag: Tagging src/bin/true
+T src/bin/true/.cvsignore
+T src/bin/true/Makefile
+T src/bin/true/depend.mk
+T src/bin/true/true.c
+cvs tag: Tagging src/include
+T src/include/Makefile
+T src/include/assert.h
+T src/include/err.h
+T src/include/errno.h
+T src/include/fcntl.h
+T src/include/limits.h
+T src/include/setjmp.h
+T src/include/stdarg.h
+T src/include/stdio.h
+T src/include/stdlib.h
+T src/include/string.h
+T src/include/time.h
+T src/include/unistd.h
+cvs tag: Tagging src/include/sys
+T src/include/sys/ioctl.h
+T src/include/sys/reboot.h
+T src/include/sys/stat.h
+T src/include/sys/types.h
+T src/include/sys/wait.h
+cvs tag: Tagging src/kern
+T src/kern/Makefile
+cvs tag: Tagging src/kern/arch
+cvs tag: Tagging src/kern/arch/mips
+cvs tag: Tagging src/kern/arch/mips/conf
+T src/kern/arch/mips/conf/Makefile.mips
+T src/kern/arch/mips/conf/conf.arch
+T src/kern/arch/mips/conf/ldscript
+cvs tag: Tagging src/kern/arch/mips/include
+T src/kern/arch/mips/include/asmdefs.h
+T src/kern/arch/mips/include/bus.h
+T src/kern/arch/mips/include/ktypes.h
+T src/kern/arch/mips/include/pcb.h
+T src/kern/arch/mips/include/setjmp.h
+T src/kern/arch/mips/include/specialreg.h
+T src/kern/arch/mips/include/spl.h
+T src/kern/arch/mips/include/switchframe.h
+T src/kern/arch/mips/include/tlb.h
+T src/kern/arch/mips/include/trapframe.h
+T src/kern/arch/mips/include/types.h
+T src/kern/arch/mips/include/vm.h
+cvs tag: Tagging src/kern/arch/mips/mips
+T src/kern/arch/mips/mips/cache_mips1.S
+T src/kern/arch/mips/mips/dumbvm.c
+T src/kern/arch/mips/mips/exception.S
+T src/kern/arch/mips/mips/interrupt.c
+T src/kern/arch/mips/mips/lamebus_mips.c
+T src/kern/arch/mips/mips/pcb.c
+T src/kern/arch/mips/mips/ram.c
+T src/kern/arch/mips/mips/spl.c
+T src/kern/arch/mips/mips/start.S
+T src/kern/arch/mips/mips/switch.S
+T src/kern/arch/mips/mips/syscall.c
+T src/kern/arch/mips/mips/threadstart.S
+T src/kern/arch/mips/mips/tlb_mips1.S
+T src/kern/arch/mips/mips/trap.c
+cvs tag: Tagging src/kern/asst1
+T src/kern/asst1/catlock.c
+T src/kern/asst1/catsem.c
+T src/kern/asst1/stoplight.c
+cvs tag: Tagging src/kern/compile
+T src/kern/compile/.cvsignore
+cvs tag: Tagging src/kern/conf
+T src/kern/conf/ASST0
+T src/kern/conf/ASST1
+T src/kern/conf/ASST2
+T src/kern/conf/ASST2-OPT
+T src/kern/conf/ASST3
+T src/kern/conf/ASST4
+T src/kern/conf/ASST5
+T src/kern/conf/conf.kern
+T src/kern/conf/config
+T src/kern/conf/newvers.sh
+cvs tag: Tagging src/kern/dev
+T src/kern/dev/init.c
+cvs tag: Tagging src/kern/dev/generic
+T src/kern/dev/generic/beep.c
+T src/kern/dev/generic/beep.h
+T src/kern/dev/generic/console.c
+T src/kern/dev/generic/console.h
+T src/kern/dev/generic/pseudorand.c
+T src/kern/dev/generic/pseudorand.h
+T src/kern/dev/generic/pseudorand_att.c
+T src/kern/dev/generic/random.c
+T src/kern/dev/generic/random.h
+T src/kern/dev/generic/rtclock.c
+T src/kern/dev/generic/rtclock.h
+cvs tag: Tagging src/kern/dev/lamebus
+T src/kern/dev/lamebus/beep_ltimer.c
+T src/kern/dev/lamebus/con_lscreen.c
+T src/kern/dev/lamebus/con_lser.c
+T src/kern/dev/lamebus/conf.lamebus
+T src/kern/dev/lamebus/emu.c
+T src/kern/dev/lamebus/emu.h
+T src/kern/dev/lamebus/emu_att.c
+T src/kern/dev/lamebus/lamebus.c
+T src/kern/dev/lamebus/lamebus.h
+T src/kern/dev/lamebus/lhd.c
+T src/kern/dev/lamebus/lhd.h
+T src/kern/dev/lamebus/lhd_att.c
+T src/kern/dev/lamebus/lnet.c
+T src/kern/dev/lamebus/lnet_att.c
+T src/kern/dev/lamebus/lrandom.c
+T src/kern/dev/lamebus/lrandom.h
+T src/kern/dev/lamebus/lrandom_att.c
+T src/kern/dev/lamebus/lscreen.c
+T src/kern/dev/lamebus/lscreen.h
+T src/kern/dev/lamebus/lscreen_att.c
+T src/kern/dev/lamebus/lser.c
+T src/kern/dev/lamebus/lser.h
+T src/kern/dev/lamebus/lser_att.c
+T src/kern/dev/lamebus/ltimer.c
+T src/kern/dev/lamebus/ltimer.h
+T src/kern/dev/lamebus/ltimer_att.c
+T src/kern/dev/lamebus/ltrace.c
+T src/kern/dev/lamebus/ltrace.h
+T src/kern/dev/lamebus/ltrace_att.c
+T src/kern/dev/lamebus/random_lrandom.c
+T src/kern/dev/lamebus/rtclock_ltimer.c
+cvs tag: Tagging src/kern/fs
+cvs tag: Tagging src/kern/fs/sfs
+T src/kern/fs/sfs/sfs_fs.c
+T src/kern/fs/sfs/sfs_io.c
+T src/kern/fs/sfs/sfs_vnode.c
+cvs tag: Tagging src/kern/fs/vfs
+T src/kern/fs/vfs/device.c
+T src/kern/fs/vfs/devnull.c
+T src/kern/fs/vfs/vfscwd.c
+T src/kern/fs/vfs/vfslist.c
+T src/kern/fs/vfs/vfslookup.c
+T src/kern/fs/vfs/vfspath.c
+T src/kern/fs/vfs/vnode.c
+cvs tag: Tagging src/kern/include
+T src/kern/include/addrspace.h
+T src/kern/include/array.h
+T src/kern/include/bitmap.h
+T src/kern/include/clock.h
+T src/kern/include/curthread.h
+T src/kern/include/dev.h
+T src/kern/include/elf.h
+T src/kern/include/emufs.h
+T src/kern/include/fs.h
+T src/kern/include/lib.h
+T src/kern/include/queue.h
+T src/kern/include/scheduler.h
+T src/kern/include/sfs.h
+T src/kern/include/stdarg.h
+T src/kern/include/synch.h
+T src/kern/include/syscall.h
+T src/kern/include/test.h
+T src/kern/include/thread.h
+T src/kern/include/types.h
+T src/kern/include/uio.h
+T src/kern/include/version.h
+T src/kern/include/vfs.h
+T src/kern/include/vm.h
+T src/kern/include/vnode.h
+cvs tag: Tagging src/kern/include/kern
+T src/kern/include/kern/callno.h
+T src/kern/include/kern/errmsg.h
+T src/kern/include/kern/errno.h
+T src/kern/include/kern/ioctl.h
+T src/kern/include/kern/limits.h
+T src/kern/include/kern/sfs.h
+T src/kern/include/kern/stat.h
+T src/kern/include/kern/types.h
+T src/kern/include/kern/unistd.h
+cvs tag: Tagging src/kern/lib
+T src/kern/lib/array.c
+T src/kern/lib/bitmap.c
+T src/kern/lib/copyinout.c
+T src/kern/lib/kgets.c
+T src/kern/lib/kheap.c
+T src/kern/lib/kprintf.c
+T src/kern/lib/misc.c
+T src/kern/lib/ntoh.c
+T src/kern/lib/queue.c
+cvs tag: Tagging src/kern/main
+T src/kern/main/main.c
+T src/kern/main/menu.c
+cvs tag: Tagging src/kern/test
+T src/kern/test/arraytest.c
+T src/kern/test/bitmaptest.c
+T src/kern/test/fstest.c
+T src/kern/test/malloctest.c
+T src/kern/test/nettest.c
+T src/kern/test/queuetest.c
+T src/kern/test/synchtest.c
+T src/kern/test/threadtest.c
+T src/kern/test/tt3.c
+cvs tag: Tagging src/kern/thread
+T src/kern/thread/hardclock.c
+T src/kern/thread/scheduler.c
+T src/kern/thread/synch.c
+T src/kern/thread/thread.c
+cvs tag: Tagging src/kern/userprog
+T src/kern/userprog/loadelf.c
+T src/kern/userprog/runprogram.c
+T src/kern/userprog/uio.c
+cvs tag: Tagging src/kern/vm
+T src/kern/vm/addrspace.c
+cvs tag: Tagging src/lib
+T src/lib/Makefile
+cvs tag: Tagging src/lib/crt0
+T src/lib/crt0/Makefile
+T src/lib/crt0/mips-crt0.S
+cvs tag: Tagging src/lib/hostcompat
+T src/lib/hostcompat/.cvsignore
+T src/lib/hostcompat/Makefile
+T src/lib/hostcompat/dependh.mk
+T src/lib/hostcompat/err.c
+T src/lib/hostcompat/host-err.h
+T src/lib/hostcompat/hostcompat.c
+T src/lib/hostcompat/hostcompat.h
+T src/lib/hostcompat/time.c
+cvs tag: Tagging src/lib/libc
+T src/lib/libc/.cvsignore
+T src/lib/libc/Makefile
+T src/lib/libc/__assert.c
+T src/lib/libc/__printf.c
+T src/lib/libc/__puts.c
+T src/lib/libc/abort.c
+T src/lib/libc/atoi.c
+T src/lib/libc/bzero.c
+T src/lib/libc/callno-parse.sh
+T src/lib/libc/depend.mk
+T src/lib/libc/err.c
+T src/lib/libc/errno.c
+T src/lib/libc/exit.c
+T src/lib/libc/getchar.c
+T src/lib/libc/getcwd.c
+T src/lib/libc/memcmp.c
+T src/lib/libc/memcpy.c
+T src/lib/libc/memmove.c
+T src/lib/libc/memset.c
+T src/lib/libc/mips-setjmp.S
+T src/lib/libc/printf.c
+T src/lib/libc/putchar.c
+T src/lib/libc/puts.c
+T src/lib/libc/random.c
+T src/lib/libc/snprintf.c
+T src/lib/libc/strcat.c
+T src/lib/libc/strchr.c
+T src/lib/libc/strcmp.c
+T src/lib/libc/strcpy.c
+T src/lib/libc/strerror.c
+T src/lib/libc/strlen.c
+T src/lib/libc/strrchr.c
+T src/lib/libc/strtok.c
+T src/lib/libc/strtok_r.c
+T src/lib/libc/syscalls-mips.S
+T src/lib/libc/system.c
+T src/lib/libc/time.c
+cvs tag: Tagging src/man
+T src/man/Makefile
+cvs tag: Tagging src/man/bin
+T src/man/bin/Makefile
+T src/man/bin/cat.html
+T src/man/bin/cp.html
+T src/man/bin/false.html
+T src/man/bin/index.html
+T src/man/bin/ln.html
+T src/man/bin/ls.html
+T src/man/bin/mkdir.html
+T src/man/bin/mv.html
+T src/man/bin/pwd.html
+T src/man/bin/rm.html
+T src/man/bin/rmdir.html
+T src/man/bin/sh.html
+T src/man/bin/sync.html
+T src/man/bin/true.html
+cvs tag: Tagging src/man/dev
+T src/man/dev/Makefile
+T src/man/dev/beep.html
+T src/man/dev/con.html
+T src/man/dev/emu.html
+T src/man/dev/index.html
+T src/man/dev/lamebus.html
+T src/man/dev/lhd.html
+T src/man/dev/lnet.html
+T src/man/dev/lrandom.html
+T src/man/dev/lscreen.html
+T src/man/dev/lser.html
+T src/man/dev/ltimer.html
+T src/man/dev/null.html
+T src/man/dev/pseudorand.html
+T src/man/dev/random.html
+T src/man/dev/rtclock.html
+cvs tag: Tagging src/man/libc
+T src/man/libc/Makefile
+T src/man/libc/__vprintf.html
+T src/man/libc/abort.html
+T src/man/libc/assert.html
+T src/man/libc/atoi.html
+T src/man/libc/bzero.html
+T src/man/libc/calloc.html
+T src/man/libc/err.html
+T src/man/libc/exit.html
+T src/man/libc/free.html
+T src/man/libc/getchar.html
+T src/man/libc/getcwd.html
+T src/man/libc/index.html
+T src/man/libc/malloc.html
+T src/man/libc/memcpy.html
+T src/man/libc/memmove.html
+T src/man/libc/memset.html
+T src/man/libc/printf.html
+T src/man/libc/putchar.html
+T src/man/libc/puts.html
+T src/man/libc/random.html
+T src/man/libc/realloc.html
+T src/man/libc/setjmp.html
+T src/man/libc/snprintf.html
+T src/man/libc/stdarg.html
+T src/man/libc/strcat.html
+T src/man/libc/strchr.html
+T src/man/libc/strcmp.html
+T src/man/libc/strcpy.html
+T src/man/libc/strerror.html
+T src/man/libc/strlen.html
+T src/man/libc/strrchr.html
+T src/man/libc/strtok.html
+T src/man/libc/strtok_r.html
+T src/man/libc/system.html
+T src/man/libc/time.html
+T src/man/libc/warn.html
+cvs tag: Tagging src/man/misc
+T src/man/misc/Makefile
+T src/man/misc/index.html
+cvs tag: Tagging src/man/sbin
+T src/man/sbin/Makefile
+T src/man/sbin/dumpsfs.html
+T src/man/sbin/halt.html
+T src/man/sbin/index.html
+T src/man/sbin/mksfs.html
+T src/man/sbin/poweroff.html
+T src/man/sbin/reboot.html
+cvs tag: Tagging src/man/syscall
+T src/man/syscall/Makefile
+T src/man/syscall/__getcwd.html
+T src/man/syscall/__time.html
+T src/man/syscall/_exit.html
+T src/man/syscall/chdir.html
+T src/man/syscall/close.html
+T src/man/syscall/dup2.html
+T src/man/syscall/errno.html
+T src/man/syscall/execv.html
+T src/man/syscall/fork.html
+T src/man/syscall/fstat.html
+T src/man/syscall/fsync.html
+T src/man/syscall/ftruncate.html
+T src/man/syscall/getdirentry.html
+T src/man/syscall/getpid.html
+T src/man/syscall/index.html
+T src/man/syscall/ioctl.html
+T src/man/syscall/link.html
+T src/man/syscall/lseek.html
+T src/man/syscall/lstat.html
+T src/man/syscall/mkdir.html
+T src/man/syscall/open.html
+T src/man/syscall/pipe.html
+T src/man/syscall/read.html
+T src/man/syscall/readlink.html
+T src/man/syscall/reboot.html
+T src/man/syscall/remove.html
+T src/man/syscall/rename.html
+T src/man/syscall/rmdir.html
+T src/man/syscall/sbrk.html
+T src/man/syscall/stat.html
+T src/man/syscall/symlink.html
+T src/man/syscall/sync.html
+T src/man/syscall/waitpid.html
+T src/man/syscall/write.html
+cvs tag: Tagging src/man/testbin
+T src/man/testbin/Makefile
+T src/man/testbin/add.html
+T src/man/testbin/argtest.html
+T src/man/testbin/badcall.html
+T src/man/testbin/bigfile.html
+T src/man/testbin/conman.html
+T src/man/testbin/crash.html
+T src/man/testbin/ctest.html
+T src/man/testbin/dirseek.html
+T src/man/testbin/dirtest.html
+T src/man/testbin/f_test.html
+T src/man/testbin/farm.html
+T src/man/testbin/faulter.html
+T src/man/testbin/filetest.html
+T src/man/testbin/forkbomb.html
+T src/man/testbin/forktest.html
+T src/man/testbin/guzzle.html
+T src/man/testbin/hash.html
+T src/man/testbin/hog.html
+T src/man/testbin/huge.html
+T src/man/testbin/index.html
+T src/man/testbin/kitchen.html
+T src/man/testbin/malloctest.html
+T src/man/testbin/matmult.html
+T src/man/testbin/palin.html
+T src/man/testbin/randcall.html
+T src/man/testbin/rmdirtest.html
+T src/man/testbin/rmtest.html
+T src/man/testbin/sink.html
+T src/man/testbin/sort.html
+T src/man/testbin/sty.html
+T src/man/testbin/tail.html
+T src/man/testbin/tictac.html
+T src/man/testbin/triplehuge.html
+T src/man/testbin/triplemat.html
+T src/man/testbin/triplesort.html
+T src/man/testbin/userthreads.html
+cvs tag: Tagging src/man/toplevel
+T src/man/toplevel/Makefile
+T src/man/toplevel/index.html
+cvs tag: Tagging src/mk
+T src/mk/hostprog.mk
+T src/mk/lib.mk
+T src/mk/man.mk
+T src/mk/prog.mk
+cvs tag: Tagging src/sbin
+T src/sbin/Makefile
+cvs tag: Tagging src/sbin/dumpsfs
+T src/sbin/dumpsfs/.cvsignore
+T src/sbin/dumpsfs/Makefile
+T src/sbin/dumpsfs/depend.mk
+T src/sbin/dumpsfs/dependh.mk
+T src/sbin/dumpsfs/dumpsfs.c
+cvs tag: Tagging src/sbin/halt
+T src/sbin/halt/.cvsignore
+T src/sbin/halt/Makefile
+T src/sbin/halt/depend.mk
+T src/sbin/halt/halt.c
+cvs tag: Tagging src/sbin/mksfs
+T src/sbin/mksfs/.cvsignore
+T src/sbin/mksfs/Makefile
+T src/sbin/mksfs/depend.mk
+T src/sbin/mksfs/dependh.mk
+T src/sbin/mksfs/disk.c
+T src/sbin/mksfs/disk.h
+T src/sbin/mksfs/mksfs.c
+T src/sbin/mksfs/support.c
+T src/sbin/mksfs/support.h
+cvs tag: Tagging src/sbin/poweroff
+T src/sbin/poweroff/.cvsignore
+T src/sbin/poweroff/Makefile
+T src/sbin/poweroff/depend.mk
+T src/sbin/poweroff/poweroff.c
+cvs tag: Tagging src/sbin/reboot
+T src/sbin/reboot/.cvsignore
+T src/sbin/reboot/Makefile
+T src/sbin/reboot/depend.mk
+T src/sbin/reboot/reboot.c
+cvs tag: Tagging src/testbin
+T src/testbin/Makefile
+cvs tag: Tagging src/testbin/add
+T src/testbin/add/.cvsignore
+T src/testbin/add/Makefile
+T src/testbin/add/add.c
+T src/testbin/add/depend.mk
+cvs tag: Tagging src/testbin/argtest
+T src/testbin/argtest/.cvsignore
+T src/testbin/argtest/Makefile
+T src/testbin/argtest/argtest.c
+T src/testbin/argtest/depend.mk
+cvs tag: Tagging src/testbin/badcall
+T src/testbin/badcall/.cvsignore
+T src/testbin/badcall/Makefile
+T src/testbin/badcall/bad_chdir.c
+T src/testbin/badcall/bad_close.c
+T src/testbin/badcall/bad_dup2.c
+T src/testbin/badcall/bad_execv.c
+T src/testbin/badcall/bad_fsync.c
+T src/testbin/badcall/bad_ftruncate.c
+T src/testbin/badcall/bad_getcwd.c
+T src/testbin/badcall/bad_getdirentry.c
+T src/testbin/badcall/bad_ioctl.c
+T src/testbin/badcall/bad_link.c
+T src/testbin/badcall/bad_lseek.c
+T src/testbin/badcall/bad_mkdir.c
+T src/testbin/badcall/bad_open.c
+T src/testbin/badcall/bad_pipe.c
+T src/testbin/badcall/bad_read.c
+T src/testbin/badcall/bad_readlink.c
+T src/testbin/badcall/bad_reboot.c
+T src/testbin/badcall/bad_remove.c
+T src/testbin/badcall/bad_rename.c
+T src/testbin/badcall/bad_rmdir.c
+T src/testbin/badcall/bad_sbrk.c
+T src/testbin/badcall/bad_stat.c
+T src/testbin/badcall/bad_symlink.c
+T src/testbin/badcall/bad_time.c
+T src/testbin/badcall/bad_waitpid.c
+T src/testbin/badcall/bad_write.c
+T src/testbin/badcall/common_buf.c
+T src/testbin/badcall/common_fds.c
+T src/testbin/badcall/common_path.c
+T src/testbin/badcall/config.h
+T src/testbin/badcall/depend.mk
+T src/testbin/badcall/driver.c
+T src/testbin/badcall/test.h
+cvs tag: Tagging src/testbin/bigfile
+T src/testbin/bigfile/.cvsignore
+T src/testbin/bigfile/Makefile
+T src/testbin/bigfile/bigfile.c
+T src/testbin/bigfile/depend.mk
+cvs tag: Tagging src/testbin/conman
+T src/testbin/conman/.cvsignore
+T src/testbin/conman/Makefile
+T src/testbin/conman/conman.c
+T src/testbin/conman/depend.mk
+cvs tag: Tagging src/testbin/crash
+T src/testbin/crash/.cvsignore
+T src/testbin/crash/Makefile
+T src/testbin/crash/crash.c
+T src/testbin/crash/depend.mk
+cvs tag: Tagging src/testbin/ctest
+T src/testbin/ctest/.cvsignore
+T src/testbin/ctest/Makefile
+T src/testbin/ctest/ctest.c
+T src/testbin/ctest/depend.mk
+cvs tag: Tagging src/testbin/dirconc
+T src/testbin/dirconc/.cvsignore
+T src/testbin/dirconc/Makefile
+T src/testbin/dirconc/depend.mk
+T src/testbin/dirconc/dirconc.c
+cvs tag: Tagging src/testbin/dirseek
+T src/testbin/dirseek/.cvsignore
+T src/testbin/dirseek/Makefile
+T src/testbin/dirseek/depend.mk
+T src/testbin/dirseek/dirseek.c
+cvs tag: Tagging src/testbin/dirtest
+T src/testbin/dirtest/.cvsignore
+T src/testbin/dirtest/Makefile
+T src/testbin/dirtest/depend.mk
+T src/testbin/dirtest/dirtest.c
+cvs tag: Tagging src/testbin/f_test
+T src/testbin/f_test/.cvsignore
+T src/testbin/f_test/Makefile
+T src/testbin/f_test/depend.mk
+T src/testbin/f_test/f_hdr.h
+T src/testbin/f_test/f_read.c
+T src/testbin/f_test/f_test.c
+T src/testbin/f_test/f_write.c
+cvs tag: Tagging src/testbin/farm
+T src/testbin/farm/.cvsignore
+T src/testbin/farm/Makefile
+T src/testbin/farm/depend.mk
+T src/testbin/farm/farm.c
+cvs tag: Tagging src/testbin/faulter
+T src/testbin/faulter/.cvsignore
+T src/testbin/faulter/Makefile
+T src/testbin/faulter/depend.mk
+T src/testbin/faulter/faulter.c
+cvs tag: Tagging src/testbin/filetest
+T src/testbin/filetest/.cvsignore
+T src/testbin/filetest/Makefile
+T src/testbin/filetest/depend.mk
+T src/testbin/filetest/filetest.c
+cvs tag: Tagging src/testbin/forkbomb
+T src/testbin/forkbomb/.cvsignore
+T src/testbin/forkbomb/Makefile
+T src/testbin/forkbomb/depend.mk
+T src/testbin/forkbomb/forkbomb.c
+cvs tag: Tagging src/testbin/forktest
+T src/testbin/forktest/.cvsignore
+T src/testbin/forktest/Makefile
+T src/testbin/forktest/depend.mk
+T src/testbin/forktest/forktest.c
+cvs tag: Tagging src/testbin/guzzle
+T src/testbin/guzzle/.cvsignore
+T src/testbin/guzzle/Makefile
+T src/testbin/guzzle/depend.mk
+T src/testbin/guzzle/guzzle.c
+cvs tag: Tagging src/testbin/hash
+T src/testbin/hash/.cvsignore
+T src/testbin/hash/Makefile
+T src/testbin/hash/depend.mk
+T src/testbin/hash/dependh.mk
+T src/testbin/hash/hash.c
+cvs tag: Tagging src/testbin/hog
+T src/testbin/hog/.cvsignore
+T src/testbin/hog/Makefile
+T src/testbin/hog/depend.mk
+T src/testbin/hog/hog.c
+cvs tag: Tagging src/testbin/huge
+T src/testbin/huge/.cvsignore
+T src/testbin/huge/Makefile
+T src/testbin/huge/depend.mk
+T src/testbin/huge/huge.c
+cvs tag: Tagging src/testbin/kitchen
+T src/testbin/kitchen/.cvsignore
+T src/testbin/kitchen/Makefile
+T src/testbin/kitchen/depend.mk
+T src/testbin/kitchen/kitchen.c
+cvs tag: Tagging src/testbin/malloctest
+T src/testbin/malloctest/.cvsignore
+T src/testbin/malloctest/Makefile
+T src/testbin/malloctest/depend.mk
+T src/testbin/malloctest/malloctest.c
+cvs tag: Tagging src/testbin/matmult
+T src/testbin/matmult/.cvsignore
+T src/testbin/matmult/Makefile
+T src/testbin/matmult/depend.mk
+T src/testbin/matmult/matmult-orig.c
+T src/testbin/matmult/matmult.c
+cvs tag: Tagging src/testbin/palin
+T src/testbin/palin/.cvsignore
+T src/testbin/palin/Makefile
+T src/testbin/palin/depend.mk
+T src/testbin/palin/palin.c
+cvs tag: Tagging src/testbin/parallelvm
+T src/testbin/parallelvm/.cvsignore
+T src/testbin/parallelvm/Makefile
+T src/testbin/parallelvm/depend.mk
+T src/testbin/parallelvm/parallelvm.c
+cvs tag: Tagging src/testbin/randcall
+T src/testbin/randcall/.cvsignore
+T src/testbin/randcall/Makefile
+T src/testbin/randcall/callspecs.txt
+T src/testbin/randcall/depend.mk
+T src/testbin/randcall/extern.h
+T src/testbin/randcall/gencalls.sh
+T src/testbin/randcall/main.c
+cvs tag: Tagging src/testbin/rmdirtest
+T src/testbin/rmdirtest/.cvsignore
+T src/testbin/rmdirtest/Makefile
+T src/testbin/rmdirtest/depend.mk
+T src/testbin/rmdirtest/rmdirtest.c
+cvs tag: Tagging src/testbin/rmtest
+T src/testbin/rmtest/.cvsignore
+T src/testbin/rmtest/Makefile
+T src/testbin/rmtest/depend.mk
+T src/testbin/rmtest/rmtest.c
+cvs tag: Tagging src/testbin/sink
+T src/testbin/sink/.cvsignore
+T src/testbin/sink/Makefile
+T src/testbin/sink/depend.mk
+T src/testbin/sink/sink.c
+cvs tag: Tagging src/testbin/sort
+T src/testbin/sort/.cvsignore
+T src/testbin/sort/Makefile
+T src/testbin/sort/depend.mk
+T src/testbin/sort/sort.c
+cvs tag: Tagging src/testbin/sty
+T src/testbin/sty/.cvsignore
+T src/testbin/sty/Makefile
+T src/testbin/sty/depend.mk
+T src/testbin/sty/sty.c
+cvs tag: Tagging src/testbin/tail
+T src/testbin/tail/.cvsignore
+T src/testbin/tail/Makefile
+T src/testbin/tail/depend.mk
+T src/testbin/tail/tail.c
+cvs tag: Tagging src/testbin/tictac
+T src/testbin/tictac/.cvsignore
+T src/testbin/tictac/Makefile
+T src/testbin/tictac/depend.mk
+T src/testbin/tictac/tictac.c
+cvs tag: Tagging src/testbin/triplehuge
+T src/testbin/triplehuge/.cvsignore
+T src/testbin/triplehuge/Makefile
+T src/testbin/triplehuge/depend.mk
+T src/testbin/triplehuge/triple.c
+T src/testbin/triplehuge/triple.h
+T src/testbin/triplehuge/triplehuge.c
+cvs tag: Tagging src/testbin/triplemat
+T src/testbin/triplemat/.cvsignore
+T src/testbin/triplemat/Makefile
+T src/testbin/triplemat/depend.mk
+T src/testbin/triplemat/triplemat.c
+cvs tag: Tagging src/testbin/triplesort
+T src/testbin/triplesort/.cvsignore
+T src/testbin/triplesort/Makefile
+T src/testbin/triplesort/depend.mk
+T src/testbin/triplesort/triplesort.c
+cvs tag: Tagging src/testbin/userthreads
+T src/testbin/userthreads/.cvsignore
+T src/testbin/userthreads/Makefile
+T src/testbin/userthreads/depend.mk
+T src/testbin/userthreads/userthreads.c
+bash-4.1$ cd ~/os161/asst0
+bash-4.1$ hhh[K[K[Kcvs tag ass[K[K[K[K[K[K[K[K[K[K[Kcvs export -r asst0-end src
+cvs export: Updating src
+U src/.cvsignore
+U src/CHANGES
+U src/COPYING
+U src/Makefile
+U src/configure
+U src/defs.mk.sample
+cvs export: Updating src/bin
+U src/bin/Makefile
+cvs export: Updating src/bin/cat
+U src/bin/cat/.cvsignore
+U src/bin/cat/Makefile
+U src/bin/cat/cat.c
+U src/bin/cat/depend.mk
+cvs export: Updating src/bin/cp
+U src/bin/cp/.cvsignore
+U src/bin/cp/Makefile
+U src/bin/cp/cp.c
+U src/bin/cp/depend.mk
+cvs export: Updating src/bin/false
+U src/bin/false/.cvsignore
+U src/bin/false/Makefile
+U src/bin/false/depend.mk
+U src/bin/false/false.c
+cvs export: Updating src/bin/ln
+U src/bin/ln/.cvsignore
+U src/bin/ln/Makefile
+U src/bin/ln/depend.mk
+U src/bin/ln/ln.c
+cvs export: Updating src/bin/ls
+U src/bin/ls/.cvsignore
+U src/bin/ls/Makefile
+U src/bin/ls/depend.mk
+U src/bin/ls/ls.c
+cvs export: Updating src/bin/mkdir
+U src/bin/mkdir/.cvsignore
+U src/bin/mkdir/Makefile
+U src/bin/mkdir/depend.mk
+U src/bin/mkdir/mkdir.c
+cvs export: Updating src/bin/mv
+U src/bin/mv/.cvsignore
+U src/bin/mv/Makefile
+U src/bin/mv/depend.mk
+U src/bin/mv/mv.c
+cvs export: Updating src/bin/pwd
+U src/bin/pwd/.cvsignore
+U src/bin/pwd/Makefile
+U src/bin/pwd/depend.mk
+U src/bin/pwd/pwd.c
+cvs export: Updating src/bin/rm
+U src/bin/rm/.cvsignore
+U src/bin/rm/Makefile
+U src/bin/rm/depend.mk
+U src/bin/rm/rm.c
+cvs export: Updating src/bin/rmdir
+U src/bin/rmdir/.cvsignore
+U src/bin/rmdir/Makefile
+U src/bin/rmdir/depend.mk
+U src/bin/rmdir/rmdir.c
+cvs export: Updating src/bin/sh
+U src/bin/sh/.cvsignore
+U src/bin/sh/Makefile
+U src/bin/sh/depend.mk
+U src/bin/sh/dependh.mk
+U src/bin/sh/sh.c
+cvs export: Updating src/bin/sync
+U src/bin/sync/.cvsignore
+U src/bin/sync/Makefile
+U src/bin/sync/depend.mk
+U src/bin/sync/sync.c
+cvs export: Updating src/bin/true
+U src/bin/true/.cvsignore
+U src/bin/true/Makefile
+U src/bin/true/depend.mk
+U src/bin/true/true.c
+cvs export: Updating src/include
+U src/include/Makefile
+U src/include/assert.h
+U src/include/err.h
+U src/include/errno.h
+U src/include/fcntl.h
+U src/include/limits.h
+U src/include/setjmp.h
+U src/include/stdarg.h
+U src/include/stdio.h
+U src/include/stdlib.h
+U src/include/string.h
+U src/include/time.h
+U src/include/unistd.h
+cvs export: Updating src/include/sys
+U src/include/sys/ioctl.h
+U src/include/sys/reboot.h
+U src/include/sys/stat.h
+U src/include/sys/types.h
+U src/include/sys/wait.h
+cvs export: Updating src/kern
+U src/kern/Makefile
+cvs export: Updating src/kern/arch
+cvs export: Updating src/kern/arch/mips
+cvs export: Updating src/kern/arch/mips/conf
+U src/kern/arch/mips/conf/Makefile.mips
+U src/kern/arch/mips/conf/conf.arch
+U src/kern/arch/mips/conf/ldscript
+cvs export: Updating src/kern/arch/mips/include
+U src/kern/arch/mips/include/asmdefs.h
+U src/kern/arch/mips/include/bus.h
+U src/kern/arch/mips/include/ktypes.h
+U src/kern/arch/mips/include/pcb.h
+U src/kern/arch/mips/include/setjmp.h
+U src/kern/arch/mips/include/specialreg.h
+U src/kern/arch/mips/include/spl.h
+U src/kern/arch/mips/include/switchframe.h
+U src/kern/arch/mips/include/tlb.h
+U src/kern/arch/mips/include/trapframe.h
+U src/kern/arch/mips/include/types.h
+U src/kern/arch/mips/include/vm.h
+cvs export: Updating src/kern/arch/mips/mips
+U src/kern/arch/mips/mips/cache_mips1.S
+U src/kern/arch/mips/mips/dumbvm.c
+U src/kern/arch/mips/mips/exception.S
+U src/kern/arch/mips/mips/interrupt.c
+U src/kern/arch/mips/mips/lamebus_mips.c
+U src/kern/arch/mips/mips/pcb.c
+U src/kern/arch/mips/mips/ram.c
+U src/kern/arch/mips/mips/spl.c
+U src/kern/arch/mips/mips/start.S
+U src/kern/arch/mips/mips/switch.S
+U src/kern/arch/mips/mips/syscall.c
+U src/kern/arch/mips/mips/threadstart.S
+U src/kern/arch/mips/mips/tlb_mips1.S
+U src/kern/arch/mips/mips/trap.c
+cvs export: Updating src/kern/asst1
+U src/kern/asst1/catlock.c
+U src/kern/asst1/catsem.c
+U src/kern/asst1/stoplight.c
+cvs export: Updating src/kern/compile
+U src/kern/compile/.cvsignore
+cvs export: Updating src/kern/conf
+U src/kern/conf/ASST0
+U src/kern/conf/ASST1
+U src/kern/conf/ASST2
+U src/kern/conf/ASST2-OPT
+U src/kern/conf/ASST3
+U src/kern/conf/ASST4
+U src/kern/conf/ASST5
+U src/kern/conf/conf.kern
+U src/kern/conf/config
+U src/kern/conf/newvers.sh
+cvs export: Updating src/kern/dev
+U src/kern/dev/init.c
+cvs export: Updating src/kern/dev/generic
+U src/kern/dev/generic/beep.c
+U src/kern/dev/generic/beep.h
+U src/kern/dev/generic/console.c
+U src/kern/dev/generic/console.h
+U src/kern/dev/generic/pseudorand.c
+U src/kern/dev/generic/pseudorand.h
+U src/kern/dev/generic/pseudorand_att.c
+U src/kern/dev/generic/random.c
+U src/kern/dev/generic/random.h
+U src/kern/dev/generic/rtclock.c
+U src/kern/dev/generic/rtclock.h
+cvs export: Updating src/kern/dev/lamebus
+U src/kern/dev/lamebus/beep_ltimer.c
+U src/kern/dev/lamebus/con_lscreen.c
+U src/kern/dev/lamebus/con_lser.c
+U src/kern/dev/lamebus/conf.lamebus
+U src/kern/dev/lamebus/emu.c
+U src/kern/dev/lamebus/emu.h
+U src/kern/dev/lamebus/emu_att.c
+U src/kern/dev/lamebus/lamebus.c
+U src/kern/dev/lamebus/lamebus.h
+U src/kern/dev/lamebus/lhd.c
+U src/kern/dev/lamebus/lhd.h
+U src/kern/dev/lamebus/lhd_att.c
+U src/kern/dev/lamebus/lnet.c
+U src/kern/dev/lamebus/lnet_att.c
+U src/kern/dev/lamebus/lrandom.c
+U src/kern/dev/lamebus/lrandom.h
+U src/kern/dev/lamebus/lrandom_att.c
+U src/kern/dev/lamebus/lscreen.c
+U src/kern/dev/lamebus/lscreen.h
+U src/kern/dev/lamebus/lscreen_att.c
+U src/kern/dev/lamebus/lser.c
+U src/kern/dev/lamebus/lser.h
+U src/kern/dev/lamebus/lser_att.c
+U src/kern/dev/lamebus/ltimer.c
+U src/kern/dev/lamebus/ltimer.h
+U src/kern/dev/lamebus/ltimer_att.c
+U src/kern/dev/lamebus/ltrace.c
+U src/kern/dev/lamebus/ltrace.h
+U src/kern/dev/lamebus/ltrace_att.c
+U src/kern/dev/lamebus/random_lrandom.c
+U src/kern/dev/lamebus/rtclock_ltimer.c
+cvs export: Updating src/kern/fs
+cvs export: Updating src/kern/fs/sfs
+U src/kern/fs/sfs/sfs_fs.c
+U src/kern/fs/sfs/sfs_io.c
+U src/kern/fs/sfs/sfs_vnode.c
+cvs export: Updating src/kern/fs/vfs
+U src/kern/fs/vfs/device.c
+U src/kern/fs/vfs/devnull.c
+U src/kern/fs/vfs/vfscwd.c
+U src/kern/fs/vfs/vfslist.c
+U src/kern/fs/vfs/vfslookup.c
+U src/kern/fs/vfs/vfspath.c
+U src/kern/fs/vfs/vnode.c
+cvs export: Updating src/kern/include
+U src/kern/include/addrspace.h
+U src/kern/include/array.h
+U src/kern/include/bitmap.h
+U src/kern/include/clock.h
+U src/kern/include/curthread.h
+U src/kern/include/dev.h
+U src/kern/include/elf.h
+U src/kern/include/emufs.h
+U src/kern/include/fs.h
+U src/kern/include/lib.h
+U src/kern/include/queue.h
+U src/kern/include/scheduler.h
+U src/kern/include/sfs.h
+U src/kern/include/stdarg.h
+U src/kern/include/synch.h
+U src/kern/include/syscall.h
+U src/kern/include/test.h
+U src/kern/include/thread.h
+U src/kern/include/types.h
+U src/kern/include/uio.h
+U src/kern/include/version.h
+U src/kern/include/vfs.h
+U src/kern/include/vm.h
+U src/kern/include/vnode.h
+cvs export: Updating src/kern/include/kern
+U src/kern/include/kern/callno.h
+U src/kern/include/kern/errmsg.h
+U src/kern/include/kern/errno.h
+U src/kern/include/kern/ioctl.h
+U src/kern/include/kern/limits.h
+U src/kern/include/kern/sfs.h
+U src/kern/include/kern/stat.h
+U src/kern/include/kern/types.h
+U src/kern/include/kern/unistd.h
+cvs export: Updating src/kern/lib
+U src/kern/lib/array.c
+U src/kern/lib/bitmap.c
+U src/kern/lib/copyinout.c
+U src/kern/lib/kgets.c
+U src/kern/lib/kheap.c
+U src/kern/lib/kprintf.c
+U src/kern/lib/misc.c
+U src/kern/lib/ntoh.c
+U src/kern/lib/queue.c
+cvs export: Updating src/kern/main
+U src/kern/main/main.c
+U src/kern/main/menu.c
+cvs export: Updating src/kern/test
+U src/kern/test/arraytest.c
+U src/kern/test/bitmaptest.c
+U src/kern/test/fstest.c
+U src/kern/test/malloctest.c
+U src/kern/test/nettest.c
+U src/kern/test/queuetest.c
+U src/kern/test/synchtest.c
+U src/kern/test/threadtest.c
+U src/kern/test/tt3.c
+cvs export: Updating src/kern/thread
+U src/kern/thread/hardclock.c
+U src/kern/thread/scheduler.c
+U src/kern/thread/synch.c
+U src/kern/thread/thread.c
+cvs export: Updating src/kern/userprog
+U src/kern/userprog/loadelf.c
+U src/kern/userprog/runprogram.c
+U src/kern/userprog/uio.c
+cvs export: Updating src/kern/vm
+U src/kern/vm/addrspace.c
+cvs export: Updating src/lib
+U src/lib/Makefile
+cvs export: Updating src/lib/crt0
+U src/lib/crt0/Makefile
+U src/lib/crt0/mips-crt0.S
+cvs export: Updating src/lib/hostcompat
+U src/lib/hostcompat/.cvsignore
+U src/lib/hostcompat/Makefile
+U src/lib/hostcompat/dependh.mk
+U src/lib/hostcompat/err.c
+U src/lib/hostcompat/host-err.h
+U src/lib/hostcompat/hostcompat.c
+U src/lib/hostcompat/hostcompat.h
+U src/lib/hostcompat/time.c
+cvs export: Updating src/lib/libc
+U src/lib/libc/.cvsignore
+U src/lib/libc/Makefile
+U src/lib/libc/__assert.c
+U src/lib/libc/__printf.c
+U src/lib/libc/__puts.c
+U src/lib/libc/abort.c
+U src/lib/libc/atoi.c
+U src/lib/libc/bzero.c
+U src/lib/libc/callno-parse.sh
+U src/lib/libc/depend.mk
+U src/lib/libc/err.c
+U src/lib/libc/errno.c
+U src/lib/libc/exit.c
+U src/lib/libc/getchar.c
+U src/lib/libc/getcwd.c
+U src/lib/libc/memcmp.c
+U src/lib/libc/memcpy.c
+U src/lib/libc/memmove.c
+U src/lib/libc/memset.c
+U src/lib/libc/mips-setjmp.S
+U src/lib/libc/printf.c
+U src/lib/libc/putchar.c
+U src/lib/libc/puts.c
+U src/lib/libc/random.c
+U src/lib/libc/snprintf.c
+U src/lib/libc/strcat.c
+U src/lib/libc/strchr.c
+U src/lib/libc/strcmp.c
+U src/lib/libc/strcpy.c
+U src/lib/libc/strerror.c
+U src/lib/libc/strlen.c
+U src/lib/libc/strrchr.c
+U src/lib/libc/strtok.c
+U src/lib/libc/strtok_r.c
+U src/lib/libc/syscalls-mips.S
+U src/lib/libc/system.c
+U src/lib/libc/time.c
+cvs export: Updating src/man
+U src/man/Makefile
+cvs export: Updating src/man/bin
+U src/man/bin/Makefile
+U src/man/bin/cat.html
+U src/man/bin/cp.html
+U src/man/bin/false.html
+U src/man/bin/index.html
+U src/man/bin/ln.html
+U src/man/bin/ls.html
+U src/man/bin/mkdir.html
+U src/man/bin/mv.html
+U src/man/bin/pwd.html
+U src/man/bin/rm.html
+U src/man/bin/rmdir.html
+U src/man/bin/sh.html
+U src/man/bin/sync.html
+U src/man/bin/true.html
+cvs export: Updating src/man/dev
+U src/man/dev/Makefile
+U src/man/dev/beep.html
+U src/man/dev/con.html
+U src/man/dev/emu.html
+U src/man/dev/index.html
+U src/man/dev/lamebus.html
+U src/man/dev/lhd.html
+U src/man/dev/lnet.html
+U src/man/dev/lrandom.html
+U src/man/dev/lscreen.html
+U src/man/dev/lser.html
+U src/man/dev/ltimer.html
+U src/man/dev/null.html
+U src/man/dev/pseudorand.html
+U src/man/dev/random.html
+U src/man/dev/rtclock.html
+cvs export: Updating src/man/libc
+U src/man/libc/Makefile
+U src/man/libc/__vprintf.html
+U src/man/libc/abort.html
+U src/man/libc/assert.html
+U src/man/libc/atoi.html
+U src/man/libc/bzero.html
+U src/man/libc/calloc.html
+U src/man/libc/err.html
+U src/man/libc/exit.html
+U src/man/libc/free.html
+U src/man/libc/getchar.html
+U src/man/libc/getcwd.html
+U src/man/libc/index.html
+U src/man/libc/malloc.html
+U src/man/libc/memcpy.html
+U src/man/libc/memmove.html
+U src/man/libc/memset.html
+U src/man/libc/printf.html
+U src/man/libc/putchar.html
+U src/man/libc/puts.html
+U src/man/libc/random.html
+U src/man/libc/realloc.html
+U src/man/libc/setjmp.html
+U src/man/libc/snprintf.html
+U src/man/libc/stdarg.html
+U src/man/libc/strcat.html
+U src/man/libc/strchr.html
+U src/man/libc/strcmp.html
+U src/man/libc/strcpy.html
+U src/man/libc/strerror.html
+U src/man/libc/strlen.html
+U src/man/libc/strrchr.html
+U src/man/libc/strtok.html
+U src/man/libc/strtok_r.html
+U src/man/libc/system.html
+U src/man/libc/time.html
+U src/man/libc/warn.html
+cvs export: Updating src/man/misc
+U src/man/misc/Makefile
+U src/man/misc/index.html
+cvs export: Updating src/man/sbin
+U src/man/sbin/Makefile
+U src/man/sbin/dumpsfs.html
+U src/man/sbin/halt.html
+U src/man/sbin/index.html
+U src/man/sbin/mksfs.html
+U src/man/sbin/poweroff.html
+U src/man/sbin/reboot.html
+cvs export: Updating src/man/syscall
+U src/man/syscall/Makefile
+U src/man/syscall/__getcwd.html
+U src/man/syscall/__time.html
+U src/man/syscall/_exit.html
+U src/man/syscall/chdir.html
+U src/man/syscall/close.html
+U src/man/syscall/dup2.html
+U src/man/syscall/errno.html
+U src/man/syscall/execv.html
+U src/man/syscall/fork.html
+U src/man/syscall/fstat.html
+U src/man/syscall/fsync.html
+U src/man/syscall/ftruncate.html
+U src/man/syscall/getdirentry.html
+U src/man/syscall/getpid.html
+U src/man/syscall/index.html
+U src/man/syscall/ioctl.html
+U src/man/syscall/link.html
+U src/man/syscall/lseek.html
+U src/man/syscall/lstat.html
+U src/man/syscall/mkdir.html
+U src/man/syscall/open.html
+U src/man/syscall/pipe.html
+U src/man/syscall/read.html
+U src/man/syscall/readlink.html
+U src/man/syscall/reboot.html
+U src/man/syscall/remove.html
+U src/man/syscall/rename.html
+U src/man/syscall/rmdir.html
+U src/man/syscall/sbrk.html
+U src/man/syscall/stat.html
+U src/man/syscall/symlink.html
+U src/man/syscall/sync.html
+U src/man/syscall/waitpid.html
+U src/man/syscall/write.html
+cvs export: Updating src/man/testbin
+U src/man/testbin/Makefile
+U src/man/testbin/add.html
+U src/man/testbin/argtest.html
+U src/man/testbin/badcall.html
+U src/man/testbin/bigfile.html
+U src/man/testbin/conman.html
+U src/man/testbin/crash.html
+U src/man/testbin/ctest.html
+U src/man/testbin/dirseek.html
+U src/man/testbin/dirtest.html
+U src/man/testbin/f_test.html
+U src/man/testbin/farm.html
+U src/man/testbin/faulter.html
+U src/man/testbin/filetest.html
+U src/man/testbin/forkbomb.html
+U src/man/testbin/forktest.html
+U src/man/testbin/guzzle.html
+U src/man/testbin/hash.html
+U src/man/testbin/hog.html
+U src/man/testbin/huge.html
+U src/man/testbin/index.html
+U src/man/testbin/kitchen.html
+U src/man/testbin/malloctest.html
+U src/man/testbin/matmult.html
+U src/man/testbin/palin.html
+U src/man/testbin/randcall.html
+U src/man/testbin/rmdirtest.html
+U src/man/testbin/rmtest.html
+U src/man/testbin/sink.html
+U src/man/testbin/sort.html
+U src/man/testbin/sty.html
+U src/man/testbin/tail.html
+U src/man/testbin/tictac.html
+U src/man/testbin/triplehuge.html
+U src/man/testbin/triplemat.html
+U src/man/testbin/triplesort.html
+U src/man/testbin/userthreads.html
+cvs export: Updating src/man/toplevel
+U src/man/toplevel/Makefile
+U src/man/toplevel/index.html
+cvs export: Updating src/mk
+U src/mk/hostprog.mk
+U src/mk/lib.mk
+U src/mk/man.mk
+U src/mk/prog.mk
+cvs export: Updating src/sbin
+U src/sbin/Makefile
+cvs export: Updating src/sbin/dumpsfs
+U src/sbin/dumpsfs/.cvsignore
+U src/sbin/dumpsfs/Makefile
+U src/sbin/dumpsfs/depend.mk
+U src/sbin/dumpsfs/dependh.mk
+U src/sbin/dumpsfs/dumpsfs.c
+cvs export: Updating src/sbin/halt
+U src/sbin/halt/.cvsignore
+U src/sbin/halt/Makefile
+U src/sbin/halt/depend.mk
+U src/sbin/halt/halt.c
+cvs export: Updating src/sbin/mksfs
+U src/sbin/mksfs/.cvsignore
+U src/sbin/mksfs/Makefile
+U src/sbin/mksfs/depend.mk
+U src/sbin/mksfs/dependh.mk
+U src/sbin/mksfs/disk.c
+U src/sbin/mksfs/disk.h
+U src/sbin/mksfs/mksfs.c
+U src/sbin/mksfs/support.c
+U src/sbin/mksfs/support.h
+cvs export: Updating src/sbin/poweroff
+U src/sbin/poweroff/.cvsignore
+U src/sbin/poweroff/Makefile
+U src/sbin/poweroff/depend.mk
+U src/sbin/poweroff/poweroff.c
+cvs export: Updating src/sbin/reboot
+U src/sbin/reboot/.cvsignore
+U src/sbin/reboot/Makefile
+U src/sbin/reboot/depend.mk
+U src/sbin/reboot/reboot.c
+cvs export: Updating src/testbin
+U src/testbin/Makefile
+cvs export: Updating src/testbin/add
+U src/testbin/add/.cvsignore
+U src/testbin/add/Makefile
+U src/testbin/add/add.c
+U src/testbin/add/depend.mk
+cvs export: Updating src/testbin/argtest
+U src/testbin/argtest/.cvsignore
+U src/testbin/argtest/Makefile
+U src/testbin/argtest/argtest.c
+U src/testbin/argtest/depend.mk
+cvs export: Updating src/testbin/badcall
+U src/testbin/badcall/.cvsignore
+U src/testbin/badcall/Makefile
+U src/testbin/badcall/bad_chdir.c
+U src/testbin/badcall/bad_close.c
+U src/testbin/badcall/bad_dup2.c
+U src/testbin/badcall/bad_execv.c
+U src/testbin/badcall/bad_fsync.c
+U src/testbin/badcall/bad_ftruncate.c
+U src/testbin/badcall/bad_getcwd.c
+U src/testbin/badcall/bad_getdirentry.c
+U src/testbin/badcall/bad_ioctl.c
+U src/testbin/badcall/bad_link.c
+U src/testbin/badcall/bad_lseek.c
+U src/testbin/badcall/bad_mkdir.c
+U src/testbin/badcall/bad_open.c
+U src/testbin/badcall/bad_pipe.c
+U src/testbin/badcall/bad_read.c
+U src/testbin/badcall/bad_readlink.c
+U src/testbin/badcall/bad_reboot.c
+U src/testbin/badcall/bad_remove.c
+U src/testbin/badcall/bad_rename.c
+U src/testbin/badcall/bad_rmdir.c
+U src/testbin/badcall/bad_sbrk.c
+U src/testbin/badcall/bad_stat.c
+U src/testbin/badcall/bad_symlink.c
+U src/testbin/badcall/bad_time.c
+U src/testbin/badcall/bad_waitpid.c
+U src/testbin/badcall/bad_write.c
+U src/testbin/badcall/common_buf.c
+U src/testbin/badcall/common_fds.c
+U src/testbin/badcall/common_path.c
+U src/testbin/badcall/config.h
+U src/testbin/badcall/depend.mk
+U src/testbin/badcall/driver.c
+U src/testbin/badcall/test.h
+cvs export: Updating src/testbin/bigfile
+U src/testbin/bigfile/.cvsignore
+U src/testbin/bigfile/Makefile
+U src/testbin/bigfile/bigfile.c
+U src/testbin/bigfile/depend.mk
+cvs export: Updating src/testbin/conman
+U src/testbin/conman/.cvsignore
+U src/testbin/conman/Makefile
+U src/testbin/conman/conman.c
+U src/testbin/conman/depend.mk
+cvs export: Updating src/testbin/crash
+U src/testbin/crash/.cvsignore
+U src/testbin/crash/Makefile
+U src/testbin/crash/crash.c
+U src/testbin/crash/depend.mk
+cvs export: Updating src/testbin/ctest
+U src/testbin/ctest/.cvsignore
+U src/testbin/ctest/Makefile
+U src/testbin/ctest/ctest.c
+U src/testbin/ctest/depend.mk
+cvs export: Updating src/testbin/dirconc
+U src/testbin/dirconc/.cvsignore
+U src/testbin/dirconc/Makefile
+U src/testbin/dirconc/depend.mk
+U src/testbin/dirconc/dirconc.c
+cvs export: Updating src/testbin/dirseek
+U src/testbin/dirseek/.cvsignore
+U src/testbin/dirseek/Makefile
+U src/testbin/dirseek/depend.mk
+U src/testbin/dirseek/dirseek.c
+cvs export: Updating src/testbin/dirtest
+U src/testbin/dirtest/.cvsignore
+U src/testbin/dirtest/Makefile
+U src/testbin/dirtest/depend.mk
+U src/testbin/dirtest/dirtest.c
+cvs export: Updating src/testbin/f_test
+U src/testbin/f_test/.cvsignore
+U src/testbin/f_test/Makefile
+U src/testbin/f_test/depend.mk
+U src/testbin/f_test/f_hdr.h
+U src/testbin/f_test/f_read.c
+U src/testbin/f_test/f_test.c
+U src/testbin/f_test/f_write.c
+cvs export: Updating src/testbin/farm
+U src/testbin/farm/.cvsignore
+U src/testbin/farm/Makefile
+U src/testbin/farm/depend.mk
+U src/testbin/farm/farm.c
+cvs export: Updating src/testbin/faulter
+U src/testbin/faulter/.cvsignore
+U src/testbin/faulter/Makefile
+U src/testbin/faulter/depend.mk
+U src/testbin/faulter/faulter.c
+cvs export: Updating src/testbin/filetest
+U src/testbin/filetest/.cvsignore
+U src/testbin/filetest/Makefile
+U src/testbin/filetest/depend.mk
+U src/testbin/filetest/filetest.c
+cvs export: Updating src/testbin/forkbomb
+U src/testbin/forkbomb/.cvsignore
+U src/testbin/forkbomb/Makefile
+U src/testbin/forkbomb/depend.mk
+U src/testbin/forkbomb/forkbomb.c
+cvs export: Updating src/testbin/forktest
+U src/testbin/forktest/.cvsignore
+U src/testbin/forktest/Makefile
+U src/testbin/forktest/depend.mk
+U src/testbin/forktest/forktest.c
+cvs export: Updating src/testbin/guzzle
+U src/testbin/guzzle/.cvsignore
+U src/testbin/guzzle/Makefile
+U src/testbin/guzzle/depend.mk
+U src/testbin/guzzle/guzzle.c
+cvs export: Updating src/testbin/hash
+U src/testbin/hash/.cvsignore
+U src/testbin/hash/Makefile
+U src/testbin/hash/depend.mk
+U src/testbin/hash/dependh.mk
+U src/testbin/hash/hash.c
+cvs export: Updating src/testbin/hog
+U src/testbin/hog/.cvsignore
+U src/testbin/hog/Makefile
+U src/testbin/hog/depend.mk
+U src/testbin/hog/hog.c
+cvs export: Updating src/testbin/huge
+U src/testbin/huge/.cvsignore
+U src/testbin/huge/Makefile
+U src/testbin/huge/depend.mk
+U src/testbin/huge/huge.c
+cvs export: Updating src/testbin/kitchen
+U src/testbin/kitchen/.cvsignore
+U src/testbin/kitchen/Makefile
+U src/testbin/kitchen/depend.mk
+U src/testbin/kitchen/kitchen.c
+cvs export: Updating src/testbin/malloctest
+U src/testbin/malloctest/.cvsignore
+U src/testbin/malloctest/Makefile
+U src/testbin/malloctest/depend.mk
+U src/testbin/malloctest/malloctest.c
+cvs export: Updating src/testbin/matmult
+U src/testbin/matmult/.cvsignore
+U src/testbin/matmult/Makefile
+U src/testbin/matmult/depend.mk
+U src/testbin/matmult/matmult-orig.c
+U src/testbin/matmult/matmult.c
+cvs export: Updating src/testbin/palin
+U src/testbin/palin/.cvsignore
+U src/testbin/palin/Makefile
+U src/testbin/palin/depend.mk
+U src/testbin/palin/palin.c
+cvs export: Updating src/testbin/parallelvm
+U src/testbin/parallelvm/.cvsignore
+U src/testbin/parallelvm/Makefile
+U src/testbin/parallelvm/depend.mk
+U src/testbin/parallelvm/parallelvm.c
+cvs export: Updating src/testbin/randcall
+U src/testbin/randcall/.cvsignore
+U src/testbin/randcall/Makefile
+U src/testbin/randcall/callspecs.txt
+U src/testbin/randcall/depend.mk
+U src/testbin/randcall/extern.h
+U src/testbin/randcall/gencalls.sh
+U src/testbin/randcall/main.c
+cvs export: Updating src/testbin/rmdirtest
+U src/testbin/rmdirtest/.cvsignore
+U src/testbin/rmdirtest/Makefile
+U src/testbin/rmdirtest/depend.mk
+U src/testbin/rmdirtest/rmdirtest.c
+cvs export: Updating src/testbin/rmtest
+U src/testbin/rmtest/.cvsignore
+U src/testbin/rmtest/Makefile
+U src/testbin/rmtest/depend.mk
+U src/testbin/rmtest/rmtest.c
+cvs export: Updating src/testbin/sink
+U src/testbin/sink/.cvsignore
+U src/testbin/sink/Makefile
+U src/testbin/sink/depend.mk
+U src/testbin/sink/sink.c
+cvs export: Updating src/testbin/sort
+U src/testbin/sort/.cvsignore
+U src/testbin/sort/Makefile
+U src/testbin/sort/depend.mk
+U src/testbin/sort/sort.c
+cvs export: Updating src/testbin/sty
+U src/testbin/sty/.cvsignore
+U src/testbin/sty/Makefile
+U src/testbin/sty/depend.mk
+U src/testbin/sty/sty.c
+cvs export: Updating src/testbin/tail
+U src/testbin/tail/.cvsignore
+U src/testbin/tail/Makefile
+U src/testbin/tail/depend.mk
+U src/testbin/tail/tail.c
+cvs export: Updating src/testbin/tictac
+U src/testbin/tictac/.cvsignore
+U src/testbin/tictac/Makefile
+U src/testbin/tictac/depend.mk
+U src/testbin/tictac/tictac.c
+cvs export: Updating src/testbin/triplehuge
+U src/testbin/triplehuge/.cvsignore
+U src/testbin/triplehuge/Makefile
+U src/testbin/triplehuge/depend.mk
+U src/testbin/triplehuge/triple.c
+U src/testbin/triplehuge/triple.h
+U src/testbin/triplehuge/triplehuge.c
+cvs export: Updating src/testbin/triplemat
+U src/testbin/triplemat/.cvsignore
+U src/testbin/triplemat/Makefile
+U src/testbin/triplemat/depend.mk
+U src/testbin/triplemat/triplemat.c
+cvs export: Updating src/testbin/triplesort
+U src/testbin/triplesort/.cvsignore
+U src/testbin/triplesort/Makefile
+U src/testbin/triplesort/depend.mk
+U src/testbin/triplesort/triplesort.c
+cvs export: Updating src/testbin/userthreads
+U src/testbin/userthreads/.cvsignore
+U src/testbin/userthreads/Makefile
+U src/testbin/userthreads/depend.mk
+U src/testbin/userthreads/userthreads.c
+bash-4.1$ tar cf -src src[C[C[C | gzip -c > os161.ta[K[K[K-1.11[K[K[K[K[K[K[K[K[K[Ksrc.tar.gz
+bash-4.1$ rm -rf src
+bash-4.1$ cd ..
+bash-4.1$ tar cf - asst0 | gzip -c > rebel-asst0.tar.gz
+bash-4.1$ exit
+exit
+
+Script done on Sun Sep 14 23:53:08 2014

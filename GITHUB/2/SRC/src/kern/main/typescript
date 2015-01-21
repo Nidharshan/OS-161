@@ -1,0 +1,130 @@
+Script started on Thu 11 Sep 2014 07:09:28 PM EDT
+[?1034hbash-4.1$ cvs diff -c main.c
+bash-4.1$ cvs diff -c main.c
+Index: main.c
+===================================================================
+RCS file: /home/rsequei2/os161/cvsroot/src/kern/main/main.c,v
+retrieving revision 1.5
+diff -c -r1.5 main.c
+*** main.c	11 Sep 2014 23:09:20 -0000	1.5
+--- main.c	11 Sep 2014 23:10:50 -0000
+***************
+*** 71,77 ****
+  	kprintf("\n");
+  
+  	
+! 	hello();//Rebel
+  	kprintf("\n");
+  	ram_bootstrap();
+  	scheduler_bootstrap();
+--- 71,77 ----
+  	kprintf("\n");
+  
+  	
+! 	hello();//"Rebel"
+  	kprintf("\n");
+  	ram_bootstrap();
+  	scheduler_bootstrap();
+bash-4.1$ cvs commit
+cvs commit: Examining .
+[?1049h[?1h=[1;24r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[24;1H"/tmp/cvs0QOWnJ" 9L, 292C[2;1HCVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS:
+CVS: Committing in .
+CVS:
+CVS: Modified Files:
+CVS:    main.c
+CVS: ----------------------------------------------------------------------
+[1m[34m~                                                                               [11;1H~                                                                               [12;1H~                                                                               [13;1H~                                                                               [14;1H~                                                                               [15;1H~                                                                               [16;1H~                                                                               [17;1H~                                                                               [18;1H~                                                                               [19;1H~                                                                               [20;1H~                                                                               [21;1H~                                                                               [22;1H~                                                                               [23;1H~                                                                               [1;1H[?12l[?25h[?25l[m[24;1H[K[24;1H:[?12l[?25hq[?25l[24;1H[K[24;1H[?1l>[?12l[?25h[?1049l
+Log message unchanged or not specified
+a)bort, c)ontinue, e)dit, !)reuse this message unchanged for remaining dirs
+Action: (continue) continue
+Checking in main.c;
+/home/rsequei2/os161/cvsroot/src/kern/main/main.c,v  <--  main.c
+new revision: 1.6; previous revision: 1.5
+done
+bash-4.1$ cd ~/os161/src/
+bash-4.1$ ./configure --ostree=$HOME/os161/root 
+Checking for ranlib... yes
+Checking for <err.h>... yes
+Generating defs.mk.
+bash-4.1$ cd kern/conf
+bash-4.1$ ./config ASST0
+Configuration ASST0
+Generating files... opt-*.h files.mk defs.mk Makefile autoconf.h autoconf.c
+Configuration in ../compile/ASST0 done
+Remember to make depend
+bash-4.1$ make depend
+make: *** No rule to make target `depend'.  Stop.
+bash-4.1$ make depend
+make: *** No rule to make target `depend'.  Stop.
+bash-4.1$ pwd
+/home/rsequei2/os161/src/kern/conf
+bash-4.1$ cd ../compile/ASST0
+bash-4.1$ make depend
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -M ../../dev/lamebus/lhd.c ../../dev/lamebus/emu.c ../../dev/generic/random.c ../../dev/generic/rtclock.c ../../dev/generic/pseudorand.c ../../dev/lamebus/ltrace.c ../../dev/lamebus/lamebus.c ../../dev/generic/console.c ../../dev/lamebus/lser.c ../../dev/generic/beep.c ../../dev/lamebus/lrandom.c ../../dev/lamebus/ltimer.c ../../dev/lamebus/rtclock_ltimer.c ../../dev/lamebus/emu_att.c ../../dev/lamebus/random_lrandom.c ../../dev/lamebus/beep_ltimer.c ../../dev/lamebus/ltrace_att.c ../../dev/generic/pseudorand_att.c ../../dev/lamebus/con_lser.c ../../dev/lamebus/lrandom_att.c ../../dev/lamebus/lser_att.c ../../dev/lamebus/lhd_att.c ../../dev/lamebus/ltimer_att.c ../../fs/sfs/sfs_io.c ../../fs/sfs/sfs_fs.c ../../fs/sfs/sfs_vnode.c ../../arch/mips/mips/dumbvm.c ../../arch/mips/mips/cache_mips1.S ../../arch/mips/mips/exception.S ../../arch/mips/mips/lamebus_mips.c ../../arch/mips/mips/interrupt.c ../../arch/mips/mips/pcb.c ../../arch/mips/mips/ram.c ../../arch/mips/mips/spl.c ../../arch/mips/mips/start.S ../../arch/mips/mips/switch.S ../../arch/mips/mips/syscall.c ../../arch/mips/mips/threadstart.S ../../arch/mips/mips/trap.c ../../arch/mips/mips/tlb_mips1.S ../../../lib/libc/mips-setjmp.S ../../lib/copyinout.c ../../lib/array.c ../../lib/bitmap.c ../../lib/queue.c ../../lib/kheap.c ../../lib/kprintf.c ../../lib/kgets.c ../../lib/misc.c ../../lib/ntoh.c ../../../lib/libc/__printf.c ../../../lib/libc/snprintf.c ../../../lib/libc/atoi.c ../../../lib/libc/bzero.c ../../../lib/libc/memcpy.c ../../../lib/libc/memmove.c ../../../lib/libc/strcat.c ../../../lib/libc/strchr.c ../../../lib/libc/strcmp.c ../../../lib/libc/strcpy.c ../../../lib/libc/strlen.c ../../../lib/libc/strrchr.c ../../../lib/libc/strtok_r.c ../../dev/init.c ../../fs/vfs/device.c ../../fs/vfs/vfscwd.c ../../fs/vfs/vfslist.c ../../fs/vfs/vfslookup.c ../../fs/vfs/vfspath.c ../../fs/vfs/vnode.c ../../fs/vfs/devnull.c ../../thread/hardclock.c ../../thread/synch.c ../../thread/scheduler.c ../../thread/thread.c ../../main/main.c ../../main/menu.c ../../main/hello.c ../../userprog/loadelf.c ../../userprog/runprogram.c ../../userprog/uio.c ../../test/arraytest.c ../../test/bitmaptest.c ../../test/queuetest.c ../../test/threadtest.c ../../test/tt3.c ../../test/synchtest.c ../../test/malloctest.c ../../test/fstest.c ../../compile/ASST0/autoconf.c > depend.mk
+bash-4.1$ make
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../main/main.c
+../../main/main.c:1: error: expected identifier or ‘(’ before ‘{’ token
+../../main/main.c: In function ‘sys_reboot’:
+../../main/main.c:28: error: ‘RB_REBOOT’ undeclared (first use in this function)
+../../main/main.c:28: error: (Each undeclared identifier is reported only once
+../../main/main.c:28: error: for each function it appears in.)
+../../main/main.c:29: error: ‘RB_HALT’ undeclared (first use in this function)
+../../main/main.c:30: error: ‘RB_POWEROFF’ undeclared (first use in this function)
+../../main/main.c:33: error: ‘EINVAL’ undeclared (first use in this function)
+../../main/main.c:36: warning: implicit declaration of function ‘shutdown’
+../../main/main.c:40: warning: implicit declaration of function ‘kprintf’
+../../main/main.c:41: warning: implicit declaration of function ‘md_halt’
+../../main/main.c:45: warning: implicit declaration of function ‘md_reboot’
+../../main/main.c:49: warning: implicit declaration of function ‘md_poweroff’
+../../main/main.c:53: warning: implicit declaration of function ‘panic’
+../../main/main.c: In function ‘kmain’:
+../../main/main.c:64: warning: implicit declaration of function ‘boot’
+../../main/main.c:67: warning: implicit declaration of function ‘menu’
+make: *** [main.o] Error 1
+bash-4.1$ make install
+[ -d /home/rsequei2/os161/root ] || mkdir /home/rsequei2/os161/root
+cp kernel /home/rsequei2/os161/root/kernel-ASST0
+rm -f /home/rsequei2/os161/root/kernel
+ln -s kernel-ASST0 /home/rsequei2/os161/root/kernel
+bash-4.1$ cd ~/os161/src/kern/main/
+bash-4.1$ rm main.c
+bash-4.1$ cvs update - [Kd main.c
+cvs update: warning: main.c was lost
+U main.c
+bash-4.1$ cd ~/os161/src/
+bash-4.1$ ./configure --ostree=$HOME/os161/root 
+Checking for ranlib... yes
+Checking for <err.h>... yes
+Generating defs.mk.
+bash-4.1$ cd kern/conf/
+bash-4.1$ ./config ASST0
+Configuration ASST0
+Generating files... opt-*.h files.mk defs.mk Makefile autoconf.h autoconf.c
+Configuration in ../compile/ASST0 done
+Remember to make depend
+bash-4.1$ cd ../compile/ASST0/
+bash-4.1$ make depend
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -M ../../dev/lamebus/lhd.c ../../dev/lamebus/emu.c ../../dev/generic/random.c ../../dev/generic/rtclock.c ../../dev/generic/pseudorand.c ../../dev/lamebus/ltrace.c ../../dev/lamebus/lamebus.c ../../dev/generic/console.c ../../dev/lamebus/lser.c ../../dev/generic/beep.c ../../dev/lamebus/lrandom.c ../../dev/lamebus/ltimer.c ../../dev/lamebus/rtclock_ltimer.c ../../dev/lamebus/emu_att.c ../../dev/lamebus/random_lrandom.c ../../dev/lamebus/beep_ltimer.c ../../dev/lamebus/ltrace_att.c ../../dev/generic/pseudorand_att.c ../../dev/lamebus/con_lser.c ../../dev/lamebus/lrandom_att.c ../../dev/lamebus/lser_att.c ../../dev/lamebus/lhd_att.c ../../dev/lamebus/ltimer_att.c ../../fs/sfs/sfs_io.c ../../fs/sfs/sfs_fs.c ../../fs/sfs/sfs_vnode.c ../../arch/mips/mips/dumbvm.c ../../arch/mips/mips/cache_mips1.S ../../arch/mips/mips/exception.S ../../arch/mips/mips/lamebus_mips.c ../../arch/mips/mips/interrupt.c ../../arch/mips/mips/pcb.c ../../arch/mips/mips/ram.c ../../arch/mips/mips/spl.c ../../arch/mips/mips/start.S ../../arch/mips/mips/switch.S ../../arch/mips/mips/syscall.c ../../arch/mips/mips/threadstart.S ../../arch/mips/mips/trap.c ../../arch/mips/mips/tlb_mips1.S ../../../lib/libc/mips-setjmp.S ../../lib/copyinout.c ../../lib/array.c ../../lib/bitmap.c ../../lib/queue.c ../../lib/kheap.c ../../lib/kprintf.c ../../lib/kgets.c ../../lib/misc.c ../../lib/ntoh.c ../../../lib/libc/__printf.c ../../../lib/libc/snprintf.c ../../../lib/libc/atoi.c ../../../lib/libc/bzero.c ../../../lib/libc/memcpy.c ../../../lib/libc/memmove.c ../../../lib/libc/strcat.c ../../../lib/libc/strchr.c ../../../lib/libc/strcmp.c ../../../lib/libc/strcpy.c ../../../lib/libc/strlen.c ../../../lib/libc/strrchr.c ../../../lib/libc/strtok_r.c ../../dev/init.c ../../fs/vfs/device.c ../../fs/vfs/vfscwd.c ../../fs/vfs/vfslist.c ../../fs/vfs/vfslookup.c ../../fs/vfs/vfspath.c ../../fs/vfs/vnode.c ../../fs/vfs/devnull.c ../../thread/hardclock.c ../../thread/synch.c ../../thread/scheduler.c ../../thread/thread.c ../../main/main.c ../../main/menu.c ../../main/hello.c ../../userprog/loadelf.c ../../userprog/runprogram.c ../../userprog/uio.c ../../test/arraytest.c ../../test/bitmaptest.c ../../test/queuetest.c ../../test/threadtest.c ../../test/tt3.c ../../test/synchtest.c ../../test/malloctest.c ../../test/fstest.c ../../compile/ASST0/autoconf.c > depend.mk
+bash-4.1$ make
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../main/main.c
+../../main/main.c: In function ‘boot’:
+../../main/main.c:74: warning: implicit declaration of function ‘hello’
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../compile/ASST0/autoconf.c
+../../conf/newvers.sh ASST0
+*** This is ASST0 build #2 ***
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c vers.c
+cs161-ld   -nostdlib -Ttext 0x80001000 -T ../../arch/mips/conf/ldscript -G 0 lhd.o emu.o random.o rtclock.o pseudorand.o ltrace.o lamebus.o console.o lser.o beep.o lrandom.o ltimer.o rtclock_ltimer.o emu_att.o random_lrandom.o beep_ltimer.o ltrace_att.o pseudorand_att.o con_lser.o lrandom_att.o lser_att.o lhd_att.o ltimer_att.o sfs_io.o sfs_fs.o sfs_vnode.o dumbvm.o cache_mips1.o exception.o lamebus_mips.o interrupt.o pcb.o ram.o spl.o start.o switch.o syscall.o threadstart.o trap.o tlb_mips1.o mips-setjmp.o copyinout.o array.o bitmap.o queue.o kheap.o kprintf.o kgets.o misc.o ntoh.o __printf.o snprintf.o atoi.o bzero.o memcpy.o memmove.o strcat.o strchr.o strcmp.o strcpy.o strlen.o strrchr.o strtok_r.o init.o device.o vfscwd.o vfslist.o vfslookup.o vfspath.o vnode.o devnull.o hardclock.o synch.o scheduler.o thread.o main.o menu.o hello.o loadelf.o runprogram.o uio.o arraytest.o bitmaptest.o queuetest.o threadtest.o tt3.o synchtest.o malloctest.o fstest.o autoconf.o vers.o -o kernel
+cs161-size kernel
+   text	   data	    bss	    dec	    hex	filename
+ 160712	    448	   7668	 168828	  2937c	kernel
+bash-4.1$ make install
+[ -d /home/rsequei2/os161/root ] || mkdir /home/rsequei2/os161/root
+cp kernel /home/rsequei2/os161/root/kernel-ASST0
+rm -f /home/rsequei2/os161/root/kernel
+ln -s kernel-ASST0 /home/rsequei2/os161/root/kernel
+bash-4.1$ exit
+exit
+
+Script done on Thu 11 Sep 2014 07:20:10 PM EDT

@@ -1,0 +1,30 @@
+NW  |  NE      
+-------------
+SW  |  SE
+
+1.Assume that the residents of Podunk are exceptional and follow the old (and widely ignored) convention that whoever arrives at the intersection first proceeds first. Using the language of synchronization primitives describe the way this intersection is controlled. In what ways is this method suboptimal?
+	
+Solution:
+
+
+Here we are using the logic that who ever comes first gets to proceed first. This method is suboptimal because, only one car can use the resource available at the intersection at a time even though there are available resources which other cars could make use of.
+
+Say for instance, a car from South goes to West utilizing resources SE, NE, NW. Here resource SW is not utilized. Even though the resource (SW) for the car that is heading from West to South is available, it still cannot use it. Worst-case scenario is that if four cars come from four different wants to take a right, then whichever car comes first gets to access the resource even though resources are available for others to perform a similar operation.
+
+In this logic the resources are not utilized in an efficient way and hence this method is suboptimal.
+
+
+
+
+Now, assume that the residents of Podunk are like most people and do not follow the convention described above. In what one instance can this four-way-stop intersection produce a deadlock? (It will be helpful to think of this in terms of the model we are using instead of trying to visualize an actual intersection).
+
+Assume that four cars coming at the same time from four different direction, to take a left(or go straight). All the cars occupy the first resource in front of them i.e.
+
+Car from South puts a lock and uses SE, and waiting for NE and NW.
+Car from East puts a lock and uses NE, and waiting for NW and SW.
+Car from North puts a lock and uses NW, and waiting for SW and SE.
+Car from West puts a lock and uses SW, and waiting for SE and NE.
+
+Each and every car is waiting for a release from the other car and hence it is a four-way-stop intersection i.e. a deadlock.
+
+

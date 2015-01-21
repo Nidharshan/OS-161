@@ -1,0 +1,1187 @@
+Index: src/kern/arch/mips/mips/trap.c
+===================================================================
+RCS file: /home/rsequei2/os161/cvsroot/src/kern/arch/mips/mips/trap.c,v
+retrieving revision 1.1.1.1
+retrieving revision 1.2
+diff -r1.1.1.1 -r1.2
+110a111,113
+> DEBUG(DB_SYSCALL, "Rebel: #%d, args %x %x %x %x\n",
+>                       tf->tf_v0, tf->tf_a0, tf->tf_a1, tf->tf_a2, tf->tf_a3);
+> 
+Index: src/kern/asst1/stoplight.c
+===================================================================
+RCS file: /home/rsequei2/os161/cvsroot/src/kern/asst1/stoplight.c,v
+retrieving revision 1.1.1.1
+retrieving revision 1.2
+diff -r1.1.1.1 -r1.2
+1,235c1,423
+< /* 
+<  * stoplight.c
+<  *
+<  * 31-1-2003 : GWA : Stub functions created for CS161 Asst1.
+<  *
+<  * NB: You can use any synchronization primitives available to solve
+<  * the stoplight problem in this file.
+<  */
+< 
+< 
+< /*
+<  * 
+<  * Includes
+<  *
+<  */
+< 
+< #include <types.h>
+< #include <lib.h>
+< #include <test.h>
+< #include <thread.h>
+< 
+< 
+< /*
+<  *
+<  * Constants
+<  *
+<  */
+< 
+< /*
+<  * Number of cars created.
+<  */
+< 
+< #define NCARS 20
+< 
+< 
+< /*
+<  *
+<  * Function Definitions
+<  *
+<  */
+< 
+< 
+< /*
+<  * gostraight()
+<  *
+<  * Arguments:
+<  *      unsigned long cardirection: the direction from which the car
+<  *              approaches the intersection.
+<  *      unsigned long carnumber: the car id number for printing purposes.
+<  *
+<  * Returns:
+<  *      nothing.
+<  *
+<  * Notes:
+<  *      This function should implement passing straight through the
+<  *      intersection from any direction.
+<  *      Write and comment this function.
+<  */
+< 
+< static
+< void
+< gostraight(unsigned long cardirection,
+<            unsigned long carnumber)
+< {
+<         /*
+<          * Avoid unused variable warnings.
+<          */
+<         
+<         (void) cardirection;
+<         (void) carnumber;
+< }
+< 
+< 
+< /*
+<  * turnleft()
+<  *
+<  * Arguments:
+<  *      unsigned long cardirection: the direction from which the car
+<  *              approaches the intersection.
+<  *      unsigned long carnumber: the car id number for printing purposes.
+<  *
+<  * Returns:
+<  *      nothing.
+<  *
+<  * Notes:
+<  *      This function should implement making a left turn through the 
+<  *      intersection from any direction.
+<  *      Write and comment this function.
+<  */
+< 
+< static
+< void
+< turnleft(unsigned long cardirection,
+<          unsigned long carnumber)
+< {
+<         /*
+<          * Avoid unused variable warnings.
+<          */
+< 
+<         (void) cardirection;
+<         (void) carnumber;
+< }
+< 
+< 
+< /*
+<  * turnright()
+<  *
+<  * Arguments:
+<  *      unsigned long cardirection: the direction from which the car
+<  *              approaches the intersection.
+<  *      unsigned long carnumber: the car id number for printing purposes.
+<  *
+<  * Returns:
+<  *      nothing.
+<  *
+<  * Notes:
+<  *      This function should implement making a right turn through the 
+<  *      intersection from any direction.
+<  *      Write and comment this function.
+<  */
+< 
+< static
+< void
+< turnright(unsigned long cardirection,
+<           unsigned long carnumber)
+< {
+<         /*
+<          * Avoid unused variable warnings.
+<          */
+< 
+<         (void) cardirection;
+<         (void) carnumber;
+< }
+< 
+< 
+< /*
+<  * approachintersection()
+<  *
+<  * Arguments: 
+<  *      void * unusedpointer: currently unused.
+<  *      unsigned long carnumber: holds car id number.
+<  *
+<  * Returns:
+<  *      nothing.
+<  *
+<  * Notes:
+<  *      Change this function as necessary to implement your solution. These
+<  *      threads are created by createcars().  Each one must choose a direction
+<  *      randomly, approach the intersection, choose a turn randomly, and then
+<  *      complete that turn.  The code to choose a direction randomly is
+<  *      provided, the rest is left to you to implement.  Making a turn
+<  *      or going straight should be done by calling one of the functions
+<  *      above.
+<  */
+<  
+< static
+< void
+< approachintersection(void * unusedpointer,
+<                      unsigned long carnumber)
+< {
+<         int cardirection;
+< 
+<         /*
+<          * Avoid unused variable and function warnings.
+<          */
+< 
+<         (void) unusedpointer;
+<         (void) carnumber;
+< 	(void) gostraight;
+< 	(void) turnleft;
+< 	(void) turnright;
+< 
+<         /*
+<          * cardirection is set randomly.
+<          */
+< 
+<         cardirection = random() % 4;
+< }
+< 
+< 
+< /*
+<  * createcars()
+<  *
+<  * Arguments:
+<  *      int nargs: unused.
+<  *      char ** args: unused.
+<  *
+<  * Returns:
+<  *      0 on success.
+<  *
+<  * Notes:
+<  *      Driver code to start up the approachintersection() threads.  You are
+<  *      free to modiy this code as necessary for your solution.
+<  */
+< 
+< int
+< createcars(int nargs,
+<            char ** args)
+< {
+<         int index, error;
+< 
+<         /*
+<          * Avoid unused variable warnings.
+<          */
+< 
+<         (void) nargs;
+<         (void) args;
+< 
+<         /*
+<          * Start NCARS approachintersection() threads.
+<          */
+< 
+<         for (index = 0; index < NCARS; index++) {
+< 
+<                 error = thread_fork("approachintersection thread",
+<                                     NULL,
+<                                     index,
+<                                     approachintersection,
+<                                     NULL
+<                                     );
+< 
+<                 /*
+<                  * panic() on error.
+<                  */
+< 
+<                 if (error) {
+<                         
+<                         panic("approachintersection: thread_fork failed: %s\n",
+<                               strerror(error)
+<                               );
+<                 }
+<         }
+< 
+<         return 0;
+< }
+---
+> /*stoplight.c
+> *
+> * * 31-1-2003 : GWA : Stub functions created for CS161 Asst1.
+> * *
+> * * NB: You can use any synchronization primitives available to solve
+> * * the stoplight problem in this file.
+> * */
+> 
+> /*
+>  * * 
+>  * * Includes
+>  * *
+>  * */
+> #include <types.h>
+> #include <lib.h>
+> #include <test.h>
+> #include <thread.h>
+> 
+> /*
+>  * *
+>  * * Constants
+>  * *
+>  * */
+> 
+> /*
+>  * * Number of cars created.
+>  * */
+> 
+> #define NCARS 20
+> struct lock *resources[4];//The four resources 0->SE,1->NE,2->NW,3->SW
+> int m=0;//The counter to terminate the parent thread of the cars
+> /*
+>  * *
+>  * * Function Definitions
+>  * *
+>  * */
+> 
+> /*
+>  * * gostraight()
+>  * *
+>  * * Arguments:
+>  * *      unsigned long cardirection: the direction from which the car
+>  * *              approaches the intersection.
+>  * *      unsigned long carnumber: the car id number for printing purposes.
+>  * *
+>  * * Returns:
+>  * *      nothing.
+>  * *
+>  * * Notes:
+>  * *      This function should implement passing straight through the
+>  * *      intersection from any direction.
+>  * *      Write and comment this function.
+>  * */
+> 
+> static
+> void
+> gostraight(unsigned long cardirection,
+>           unsigned long carnumber)
+> {
+> /*
+>  * * Avoid unused variable warnings.
+>  * */
+>        unsigned long dummy, number1 , number2;//variables used for swapping and sorting
+> 
+>        number1=cardirection;
+>        number2=((cardirection+1)%4);
+>              
+>  if(number1>number2)
+>        {
+>                dummy=number1;
+>                number1=number2;
+>                number2=dummy;
+>        }
+>        //Sequence is in ascending order to avoid deadlock
+>        display(cardirection,'S',carnumber,0); 
+>        lock_acquire(resources[number1]);
+>        lock_acquire(resources[number2]);
+>        display(cardirection,'S',carnumber,1);  
+>        lock_release(resources[number1]);
+>        lock_release(resources[number2]);
+>        display(cardirection,'S',carnumber,2);
+>        m++;
+>        (void) cardirection;
+>        (void) carnumber;
+> }
+> 
+> 
+> 
+> 
+> /*
+>  * * turnleft()
+>  * *
+>  * * Arguments:
+>  * *      unsigned long cardirection: the direction from which the car
+>  * *              approaches the intersection.
+>  * *      unsigned long carnumber: the car id number for printing purposes.
+>  * *
+>  * * Returns:
+>  * *      nothing.
+>  * *
+>  * * Notes:
+>  * *      This function should implement making a left turn through the 
+>  * *      intersection from any direction.
+>  * *      Write and comment this function.
+>  * */
+> 
+> static
+> void
+> turnleft(unsigned long cardirection,
+>         unsigned long carnumber)
+> {
+> /*
+>  * * Avoid unused variable warnings.
+>  * */
+>        unsigned long temp, number1,number2,number3;//variables used for swapping and sorting
+>        number1=cardirection;
+>        number2=(cardirection+1)%4;
+>        number3=(cardirection+2)%4;
+>        if (number1 > number2) {
+>                temp = number1;
+>                 number1 = number2;
+>                 number2 = temp;
+>        }
+> 
+>        if (number2 > number3) {
+>                temp = number2;
+>                number2 = number3;
+>                number3 = temp;
+>                }
+> 
+>        if (number1 > number2) {
+>                temp = number1;
+>                number1 = number2;
+>                number2 = temp;
+>        }
+>        //Sequence is in ascending order to avoid deadlock
+>        display(cardirection,'L',carnumber,0);
+>        lock_acquire(resources[number1]);
+>        lock_acquire(resources[number2]);
+>        lock_acquire(resources[number3]);
+>        display(cardirection,'L',carnumber,1);
+>        lock_release(resources[number1]);       
+>        lock_release(resources[number2]);
+>        lock_release(resources[number3]);
+>        display(cardirection,'L',carnumber,2);
+>        m++;
+>      (void) cardirection;
+>        (void) carnumber;
+> }
+> 
+> /*
+>  * * turnright()
+>  * *
+>  * * Arguments:
+>  * *      unsigned long cardirection: the direction from which the car
+>  * *              approaches the intersection.
+>  * *      unsigned long carnumber: the car id number for printing purposes.
+>  * *
+>  * * Returns:
+>  * *      nothing.
+>  * *
+>  * * Notes:
+>  * *      This function should implement making a right turn through the 
+>  * *      intersection from any direction.
+>  * *      Write and comment this function.
+>  * */
+> 
+> static
+> void
+> turnright(unsigned long cardirection,
+>          unsigned long carnumber)
+> {
+> /*
+>  * * Avoid unused variable warnings.
+>  * */
+> 
+>        (void) cardirection;
+>        (void) carnumber;
+>        display(cardirection,'R',carnumber,0);
+>        lock_acquire(resources[cardirection]);
+>        display(cardirection,'R',carnumber,1);
+>        lock_release(resources[cardirection]);
+>        display(cardirection,'R',carnumber,2);
+>        m++;
+> }
+> 
+> /*
+>  * * approachintersection()
+>  * *
+>  * * Arguments: 
+>  * *      void * unusedpointer: currently unused.
+>  * *      unsigned long carnumber: holds car id number.
+>  * *	
+>  * * Returns:
+>  * *      nothing.
+>  * *
+>  * * Notes:
+>  * *      Change this function as necessary to implement your solution. These
+>  * *      threads are created by createcars().  Each one must choose a direction
+>  * *      randomly, approach the intersection, choose a turn randomly, and then
+>  * *      complete that turn.  The code to choose a direction randomly is
+>  * *      provided, the rest is left to you to implement.  Making a turn
+>  * *      or going straight should be done by calling one of the functions
+>  * *      above.
+>  * */
+> static
+> void
+> approachintersection(void * unusedpointer,
+>                     unsigned long carnumber)
+> {
+>        int cardirection;
+>        int turnPossibility;//The three directions in which the car can possibly go
+> 
+> /*
+>  * * Avoid unused variable and function warnings.
+>  * */
+> 
+>        (void) unusedpointer;
+>        (void) carnumber;
+>        (void) gostraight;
+>        (void) turnleft;
+>        (void) turnright;
+> 
+> /*
+>  * * cardirection is set randomly.
+>  * * turnPossibility is set randomly.
+>  * */
+> 
+>        cardirection = random() % 4;
+>        turnPossibility = random() % 3;
+>        switch(turnPossibility){
+> 
+>        case 0: gostraight(cardirection,carnumber);
+>                break;
+>        case 1: turnright(cardirection,carnumber);
+>                break;
+>        case 2: turnleft(cardirection,carnumber);
+>                break;
+>        }
+> }
+> 
+> /*
+>  * * display()
+>  * *
+>  * * Arguments: 
+>  * *      unsigned long cardirection: the direction from which the car
+>  * *              approaches the intersection.
+>  * *      unsigned long carnumber: the car id number for printing purposes.
+>  * *      char turnPossibility:The three directions in which the car can possibly go
+>  * *      int n: The value of n represents: 0 -> Approaching Intersection 1-> In The Intersection 2->      
+>  * *	Leave the Intersection
+>  * *	
+>  * * Returns:
+>  * *      nothing.
+>  * *
+>  * * Notes:
+>  * *      The display function is used to display the Action, Car Source, Car Direction, 
+>  * *      Car number
+>  * *     
+>  * *     
+>  * */
+> void display(unsigned long cardirection, char turnPossibility,unsigned long carnumber, int n)
+> {
+> 	char cardirec;
+> 	switch(n)
+> 	{
+> 		case 0: // Approach
+> 		{
+> 		char cardirec;
+> 		if(cardirection==0) 
+> 		{
+> 			cardirec='S';
+> 			kprintf("Action: Approach     Car Number : %ld\t Source: %c\t destination: %c\n", carnumber,cardirec,turnPossibility);
+> 		}
+> 		if(cardirection==1) 
+> 		{
+> 			cardirec='E';
+> 			kprintf("Action: Approach     Car Number : %ld\t Source: %c\t destination: %c\n", carnumber,cardirec,turnPossibility);
+> 		}
+> 		if(cardirection==2) 
+> 		{
+> 			cardirec='N';
+> 			kprintf("Action: Approach     Car Number : %ld\t Source: %c\t destination: %c\n", carnumber,cardirec,turnPossibility);
+> 		}
+> 		if(cardirection==3) 
+> 		{cardirec='W';
+> 			kprintf("Action: Approach     Car Number : %ld\t Source: %c\t destination: %c\n", carnumber,cardirec,turnPossibility);
+> 		}
+> 		break;
+> 		}
+> 		case 1: //Intesection
+> 		{
+> 		if(cardirection==0)
+> 		{
+> 			cardirec='S';
+> 			kprintf("Action: Intersection Car Number : %ld\t Source: %c\t destination: %c\n", carnumber,cardirec,turnPossibility);
+> 		}
+> 		if(cardirection==1)
+> 		{	
+> 			cardirec='E';
+> 			kprintf("Action: Intersection Car Number : %ld\t Source: %c\t destination: %c\n", carnumber,cardirec,turnPossibility);
+> 		}
+> 		if(cardirection==2)
+> 		{
+> 			cardirec='N';
+> 			kprintf("Action: Intersection Car Number : %ld\t Source: %c\t destination: %c\n", carnumber,cardirec,turnPossibility);
+> 		}
+> 		if(cardirection==3)
+> 		{
+> 			cardirec='W';
+> 			kprintf("Action: Intersection Car Number : %ld\t Source: %c\t destination: %c\n", carnumber,cardirec,turnPossibility);
+> 		}
+> 		break;
+> 		}
+> 		case 2: // Leave
+> 		{ 
+> 		if(cardirection==0)
+> 		{
+> 			cardirec='S';
+> 			kprintf("Action: Leave        Car Number : %ld\t Source: %c\t destination: %c\n", carnumber,cardirec,turnPossibility);
+> 		}
+> 		if(cardirection==1)
+> 		{
+> 			cardirec='E';
+> 			kprintf("Action: Leave        Car Number : %ld\t Source: %c\t destination: %c\n", carnumber,cardirec,turnPossibility);
+> 		}
+> 		if(cardirection==2)
+> 		{
+> 			cardirec='N';
+> 			kprintf("Action: Leave        Car Number : %ld\t Source: %c\t destination: %c\n", carnumber,cardirec,turnPossibility);
+> 		}
+> 		if(cardirection==3)
+> 		{
+> 			cardirec='W';
+> 			kprintf("Action: Leave        Car Number : %ld\t Source: %c\t destination: %c\n", carnumber,cardirec,turnPossibility);
+> 		}
+> 		break;
+> 		}
+> 	}
+> }
+> 
+> 
+> 
+> 
+> /*
+>  * * createcars()
+>  * *
+>  * * Arguments:
+>  * *      int nargs: unused.
+>  * *      char ** args: unused.
+>  * *
+>  * * Returns:
+>  * *      0 on success.
+>  * *
+>  * * Notes:
+>  * *      Driver code to start up the approachintersection() threads.  You are
+>  * *      free to modiy this code as necessary for your solution.
+>  * */
+> 
+> int
+> createcars(int nargs,
+>           char ** args)
+> {
+>        int index, error;
+>        //Create locks for the four resources in the intersection 	
+>        resources[0] = lock_create("Resource 0");
+>        resources[1] = lock_create("Resource 1");
+>        resources[2] = lock_create("Resource 2");
+>        resources[3] = lock_create("Resource 3");
+>        /*
+>  *         * Avoid unused variable warnings.
+>  *                 */
+> 
+>        (void) nargs;
+>        (void) args;
+> 
+>        /*
+>  *         * Start NCARS approachintersection() threads.
+>  *                 */
+>        if( resources[0] == NULL || resources[1]==NULL || resources[1] == NULL || resources[1]==NULL)
+>                panic("Stoplight Initialization Failure in lock creation");
+> 
+>        kprintf("\nSource : N->North,S->South,E->East,W->West ; destination : S-> Straight, L->Left, R->Right\n\n ");
+>        for (index = 0; index < NCARS; index++) {
+> 
+>                error = thread_fork("approachintersection thread",
+>                                    NULL,
+>                                    index,
+>                                    approachintersection,
+>                                    NULL
+>                                    );
+> 
+>                /*
+>  *                 * panic() on error.
+>  *                                 */
+> 
+>                if (error) {
+>                        
+>                        panic("approachintersection: thread_fork failed: %s\n",
+>                              strerror(error)
+>                              );
+>                }
+> 
+>        }
+> 
+>        while(m<(NCARS)); //Wait for the child thread to terminate
+>        kprintf("\nSuccess!! %d cars passed the intersection.\n\n",(m));
+>        m=0;
+>       // Destroy all the created locks
+>        lock_destroy(resources[0]);
+>        lock_destroy(resources[1]);
+>        lock_destroy(resources[2]);
+>        lock_destroy(resources[3]);
+>        return 0;
+> }
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+Index: src/kern/include/synch.h
+===================================================================
+RCS file: /home/rsequei2/os161/cvsroot/src/kern/include/synch.h,v
+retrieving revision 1.1.1.1
+retrieving revision 1.2
+diff -r1.1.1.1 -r1.2
+54,56c54,57
+< 	// (don't forget to mark things volatile as needed)
+< };
+< 
+---
+>  	// (don't forget to mark things volatile as needed)
+> 	volatile int lk_count; //Binary counter used to check if there is a lock 
+> 	volatile struct thread *lk_owner;//Used to check who is the owner of the lock
+>  	};
+Index: src/kern/thread/synch.c
+===================================================================
+RCS file: /home/rsequei2/os161/cvsroot/src/kern/thread/synch.c,v
+retrieving revision 1.1.1.1
+retrieving revision 1.2
+diff -r1.1.1.1 -r1.2
+1,218c1,270
+< /*
+<  * Synchronization primitives.
+<  * See synch.h for specifications of the functions.
+<  */
+< 
+< #include <types.h>
+< #include <lib.h>
+< #include <synch.h>
+< #include <thread.h>
+< #include <curthread.h>
+< #include <machine/spl.h>
+< 
+< ////////////////////////////////////////////////////////////
+< //
+< // Semaphore.
+< 
+< struct semaphore *
+< sem_create(const char *namearg, int initial_count)
+< {
+< 	struct semaphore *sem;
+< 
+< 	assert(initial_count >= 0);
+< 
+< 	sem = kmalloc(sizeof(struct semaphore));
+< 	if (sem == NULL) {
+< 		return NULL;
+< 	}
+< 
+< 	sem->name = kstrdup(namearg);
+< 	if (sem->name == NULL) {
+< 		kfree(sem);
+< 		return NULL;
+< 	}
+< 
+< 	sem->count = initial_count;
+< 	return sem;
+< }
+< 
+< void
+< sem_destroy(struct semaphore *sem)
+< {
+< 	int spl;
+< 	assert(sem != NULL);
+< 
+< 	spl = splhigh();
+< 	assert(thread_hassleepers(sem)==0);
+< 	splx(spl);
+< 
+< 	/*
+< 	 * Note: while someone could theoretically start sleeping on
+< 	 * the semaphore after the above test but before we free it,
+< 	 * if they're going to do that, they can just as easily wait
+< 	 * a bit and start sleeping on the semaphore after it's been
+< 	 * freed. Consequently, there's not a whole lot of point in 
+< 	 * including the kfrees in the splhigh block, so we don't.
+< 	 */
+< 
+< 	kfree(sem->name);
+< 	kfree(sem);
+< }
+< 
+< void 
+< P(struct semaphore *sem)
+< {
+< 	int spl;
+< 	assert(sem != NULL);
+< 
+< 	/*
+< 	 * May not block in an interrupt handler.
+< 	 *
+< 	 * For robustness, always check, even if we can actually
+< 	 * complete the P without blocking.
+< 	 */
+< 	assert(in_interrupt==0);
+< 
+< 	spl = splhigh();
+< 	while (sem->count==0) {
+< 		thread_sleep(sem);
+< 	}
+< 	assert(sem->count>0);
+< 	sem->count--;
+< 	splx(spl);
+< }
+< 
+< void
+< V(struct semaphore *sem)
+< {
+< 	int spl;
+< 	assert(sem != NULL);
+< 	spl = splhigh();
+< 	sem->count++;
+< 	assert(sem->count>0);
+< 	thread_wakeup(sem);
+< 	splx(spl);
+< }
+< 
+< ////////////////////////////////////////////////////////////
+< //
+< // Lock.
+< 
+< struct lock *
+< lock_create(const char *name)
+< {
+< 	struct lock *lock;
+< 
+< 	lock = kmalloc(sizeof(struct lock));
+< 	if (lock == NULL) {
+< 		return NULL;
+< 	}
+< 
+< 	lock->name = kstrdup(name);
+< 	if (lock->name == NULL) {
+< 		kfree(lock);
+< 		return NULL;
+< 	}
+< 	
+< 	// add stuff here as needed
+< 	
+< 	return lock;
+< }
+< 
+< void
+< lock_destroy(struct lock *lock)
+< {
+< 	assert(lock != NULL);
+< 
+< 	// add stuff here as needed
+< 	
+< 	kfree(lock->name);
+< 	kfree(lock);
+< }
+< 
+< void
+< lock_acquire(struct lock *lock)
+< {
+< 	// Write this
+< 
+< 	(void)lock;  // suppress warning until code gets written
+< }
+< 
+< void
+< lock_release(struct lock *lock)
+< {
+< 	// Write this
+< 
+< 	(void)lock;  // suppress warning until code gets written
+< }
+< 
+< int
+< lock_do_i_hold(struct lock *lock)
+< {
+< 	// Write this
+< 
+< 	(void)lock;  // suppress warning until code gets written
+< 
+< 	return 1;    // dummy until code gets written
+< }
+< 
+< ////////////////////////////////////////////////////////////
+< //
+< // CV
+< 
+< 
+< struct cv *
+< cv_create(const char *name)
+< {
+< 	struct cv *cv;
+< 
+< 	cv = kmalloc(sizeof(struct cv));
+< 	if (cv == NULL) {
+< 		return NULL;
+< 	}
+< 
+< 	cv->name = kstrdup(name);
+< 	if (cv->name==NULL) {
+< 		kfree(cv);
+< 		return NULL;
+< 	}
+< 	
+< 	// add stuff here as needed
+< 	
+< 	return cv;
+< }
+< 
+< void
+< cv_destroy(struct cv *cv)
+< {
+< 	assert(cv != NULL);
+< 
+< 	// add stuff here as needed
+< 	
+< 	kfree(cv->name);
+< 	kfree(cv);
+< }
+< 
+< void
+< cv_wait(struct cv *cv, struct lock *lock)
+< {
+< 	// Write this
+< 	(void)cv;    // suppress warning until code gets written
+< 	(void)lock;  // suppress warning until code gets written
+< }
+< 
+< void
+< cv_signal(struct cv *cv, struct lock *lock)
+< {
+< 	// Write this
+< 	(void)cv;    // suppress warning until code gets written
+< 	(void)lock;  // suppress warning until code gets written
+< }
+< 
+< void
+< cv_broadcast(struct cv *cv, struct lock *lock)
+< {
+< 	// Write this
+< 	(void)cv;    // suppress warning until code gets written
+< 	(void)lock;  // suppress warning until code gets written
+< }
+---
+> /*
+>  * Synchronization primitives.
+>  * See synch.h for specifications of the functions.
+>  */
+> 
+> #include <types.h>
+> #include <lib.h>
+> #include <synch.h>
+> #include <thread.h>
+> #include <curthread.h>
+> #include <machine/spl.h>
+> 
+> ////////////////////////////////////////////////////////////
+> //
+> // Semaphore.
+> 
+> struct semaphore *
+> sem_create(const char *namearg, int initial_count)
+> {
+> 	struct semaphore *sem;
+> 
+> 	assert(initial_count >= 0);
+> 
+> 	sem = kmalloc(sizeof(struct semaphore));
+> 	if (sem == NULL) {
+> 		return NULL;
+> 	}
+> 
+> 	sem->name = kstrdup(namearg);
+> 	if (sem->name == NULL) {
+> 		kfree(sem);
+> 		return NULL;
+> 	}
+> 
+> 	sem->count = initial_count;
+> 	return sem;
+> }
+> 
+> void
+> sem_destroy(struct semaphore *sem)
+> {
+> 	int spl;
+> 	assert(sem != NULL);
+> 
+> 	spl = splhigh();
+> 	assert(thread_hassleepers(sem)==0);
+> 	splx(spl);
+> 
+> 	/*
+> 	 * Note: while someone could theoretically start sleeping on
+> 	 * the semaphore after the above test but before we free it,
+> 	 * if they're going to do that, they can just as easily wait
+> 	 * a bit and start sleeping on the semaphore after it's been
+> 	 * freed. Consequently, there's not a whole lot of point in 
+> 	 * including the kfrees in the splhigh block, so we don't.
+> 	 */
+> 
+> 	kfree(sem->name);
+> 	kfree(sem);
+> }
+> 
+> void 
+> P(struct semaphore *sem)
+> {
+> 	int spl;
+> 	assert(sem != NULL);
+> 
+> 	/*
+> 	 * May not block in an interrupt handler.
+> 	 *
+> 	 * For robustness, always check, even if we can actually
+> 	 * complete the P without blocking.
+> 	 */
+> 	assert(in_interrupt==0);
+> 
+> 	spl = splhigh();
+> 	while (sem->count==0) {
+> 		thread_sleep(sem);
+> 	}
+> 	assert(sem->count>0);
+> 	sem->count--;
+> 	splx(spl);
+> }
+> 
+> void
+> V(struct semaphore *sem)
+> {
+> 	int spl;
+> 	assert(sem != NULL);
+> 	spl = splhigh();
+> 	sem->count++;
+> 	assert(sem->count>0);
+> 	thread_wakeup(sem);
+> 	splx(spl);
+> }
+> 
+> ////////////////////////////////////////////////////////////
+> //
+> // Lock.
+> 
+> struct lock *
+> lock_create(const char *name)
+> {
+> 	struct lock *lock;
+> 
+> 	lock = kmalloc(sizeof(struct lock));
+> 	if (lock == NULL) {
+> 		return NULL;
+> 	}
+> 
+> 	lock->name = kstrdup(name);
+> 	if (lock->name == NULL) {
+> 		kfree(lock);
+> 		return NULL;
+> 	}
+> 	
+> 	// add stuff here as needed
+> 	lock->lk_count = 0;         //Initialize the count to 0
+> 	lock->lk_owner = NULL; // Intialize owner to NULL
+> 		
+> 	return lock;
+> }
+> 
+> void
+> lock_destroy(struct lock *lock)
+> {
+> 	assert(lock != NULL);
+> 
+> 	while( lock->lk_count && lock->lk_owner != NULL);//Wait till count and owner is NULL	
+> 
+> 	assert(!lock->lk_count && lock->lk_owner == NULL);//Confirm the wait statement above succeeded
+> 	
+> 	kfree(lock->lk_owner); // Free the owner
+> 	kfree(lock->lk_count);//Free the count
+> 	kfree(lock->name);
+> 	kfree(lock);
+> }
+> 
+> void
+> lock_acquire(struct lock *lock)
+> {
+> 	int spl;
+>            assert(lock != NULL);
+> 
+> 	/*
+> 	 * May not block in an interrupt handler.
+> 	 *
+> 	 * For robustness, always check, even if we can actually
+> 	 * complete the P without blocking.
+> 	 */
+> 	assert(in_interrupt==0);
+> 
+> 	spl = splhigh();//Set priority to high disabling all interrupts
+> 	while (lock->lk_count && lock->lk_owner != curthread) {//Wait till the count and owner is the current thread
+> 		thread_sleep(lock);
+> 	}	
+> 	assert( !lock->lk_count || (lock->lk_count && lock->lk_owner == curthread) );
+> 		
+> 
+>            // Set the count flag and make curthread the owner	
+> 	lock->lk_count = 1;
+> 	lock->lk_owner = curthread;
+> 
+> 	
+> 	splx(spl);// Restore previous priority level
+> //	(void)lock;  // suppress warning until code gets written
+> }
+> 
+> void
+> lock_release(struct lock *lock)
+> {
+> 	// Write this
+> 	int spl;
+> 	assert(lock != NULL);
+> 	spl = splhigh(); //Set priority to high disabling all interrupts
+> 
+>             /*
+> 	 * Note: while someone could theoretically start sleeping on
+> 	 * the thread after the above test but before we free it,
+> 	 * if they're going to do that, they can just as easily wait
+> 	 * a bit and start sleeping on the semaphore after it's been
+> 	 * freed. Consequently, there's not a whole lot of point in 
+> 	 * including the kfrees in the splhigh block, so we don't.
+> 	 */
+> 
+> 	// Reset the occupied flag and clear owner.
+> 	lock->lk_count = 0;
+> 	lock->lk_owner = NULL;
+> 	
+> 	thread_wakeup(lock); // Wakes up the sleeping thread using the same address that is used to put the thread to sleep
+> 	
+>            splx(spl);// Restore previous priority level
+> 
+> 	
+> //	(void)lock;  // suppress warning until code gets written
+> }
+> 
+> int
+> lock_do_i_hold(struct lock *lock)
+> {
+> 	// Write this
+> 	return lock->lk_owner == curthread;//return the current holder
+> //	(void)lock;  // suppress warning until code gets written
+> 
+> //	return 1;    // dummy until code gets written
+> }
+> 
+> ////////////////////////////////////////////////////////////
+> //
+> // CV
+> 
+> 
+> struct cv *
+> cv_create(const char *name)
+> {
+> 	struct cv *cv;
+> 
+> 	cv = kmalloc(sizeof(struct cv));
+> 	if (cv == NULL) {
+> 		return NULL;
+> 	}
+> 
+> 	cv->name = kstrdup(name);
+> 	if (cv->name==NULL) {
+> 		kfree(cv);
+> 		return NULL;
+> 	}
+> 	
+> 	// add stuff here as needed
+> 	
+> 	return cv;
+> }
+> 
+> void
+> cv_destroy(struct cv *cv)
+> {
+> 	assert(cv != NULL);
+> 
+> 	// add stuff here as needed
+> 	
+> 	kfree(cv->name);
+> 	kfree(cv);
+> }
+> 
+> void
+> cv_wait(struct cv *cv, struct lock *lock)
+> {
+> 	// Write this
+> 	(void)cv;    // suppress warning until code gets written
+> 	(void)lock;  // suppress warning until code gets written
+> }
+> 
+> void
+> cv_signal(struct cv *cv, struct lock *lock)
+> {
+> 	// Write this
+> 	(void)cv;    // suppress warning until code gets written
+> 	(void)lock;  // suppress warning until code gets written
+> }
+> 
+> void
+> cv_broadcast(struct cv *cv, struct lock *lock)
+> {
+> 	// Write this
+> 	(void)cv;    // suppress warning until code gets written
+> 	(void)lock;  // suppress warning until code gets written
+> }
+> 
+> 
+> 

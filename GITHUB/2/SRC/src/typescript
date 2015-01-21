@@ -1,0 +1,196 @@
+Script started on Sat 13 Sep 2014 04:20:17 PM EDT
+[?1034hbash-4.1$ cvs diff -c kern/main/main.c
+Index: kern/main/main.c
+===================================================================
+RCS file: /home/rsequei2/os161/cvsroot/src/kern/main/main.c,v
+retrieving revision 1.6
+diff -c -r1.6 main.c
+*** kern/main/main.c	11 Sep 2014 23:11:14 -0000	1.6
+--- kern/main/main.c	13 Sep 2014 20:19:30 -0000
+***************
+*** 63,77 ****
+  
+  	kprintf("\n");
+  	kprintf("OS/161 base system version %s\n", BASE_VERSION);
+  	kprintf("%s", harvard_copyright);
+  	kprintf("\n");
+  
+  	kprintf("Put-your-group-name-here's system version %s (%s #%d)\n", 
+  		GROUP_VERSION, buildconfig, buildversion);
+  	kprintf("\n");
+- 
+  	
+! 	hello();//"Rebel"
+  	kprintf("\n");
+  	ram_bootstrap();
+  	scheduler_bootstrap();
+--- 63,79 ----
+  
+  	kprintf("\n");
+  	kprintf("OS/161 base system version %s\n", BASE_VERSION);
++ 
++         DEBUG(DB_VM, "VM free pages: %u\n",  BASE_VERSION);
++ 
+  	kprintf("%s", harvard_copyright);
+  	kprintf("\n");
+  
+  	kprintf("Put-your-group-name-here's system version %s (%s #%d)\n", 
+  		GROUP_VERSION, buildconfig, buildversion);
+  	kprintf("\n");
+  	
+! 	hello();//Rebel Sequeira
+  	kprintf("\n");
+  	ram_bootstrap();
+  	scheduler_bootstrap();
+bash-4.1$ cvs commit
+cvs commit: [20:21:44] waiting for rsequei2's lock in /home/rsequei2/os161/cvsroot/src/kern/fs
+^Z
+[1]+  Stopped                 cvs commit
+bash-4.1$ cd kern/main
+bash-4.1$ cvs commit
+cvs commit: Examining .
+[?1049h[?1h=[1;24r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[24;1H"/tmp/cvsfN6Tks" 9L, 292C[2;1HCVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS:
+CVS: Committing in .
+CVS:
+CVS: Modified Files:
+CVS:    main.c
+CVS: ----------------------------------------------------------------------
+[1m[34m~                                                                               [11;1H~                                                                               [12;1H~                                                                               [13;1H~                                                                               [14;1H~                                                                               [15;1H~                                                                               [16;1H~                                                                               [17;1H~                                                                               [18;1H~                                                                               [19;1H~                                                                               [20;1H~                                                                               [21;1H~                                                                               [22;1H~                                                                               [23;1H~                                                                               [1;1H[?12l[?25h[?25l[m[24;1H[K[24;1H:[?12l[?25hwq[?25l[24;3H[K[24;3H[?12l[?25h[?25l[24;2H[K[24;2H[?12l[?25hq[?25l[24;1H[K[24;1H[?1l>[?12l[?25h[?1049l
+Log message unchanged or not specified
+a)bort, c)ontinue, e)dit, !)reuse this message unchanged for remaining dirs
+Action: (continue) continue
+Checking in main.c;
+/home/rsequei2/os161/cvsroot/src/kern/main/main.c,v  <--  main.c
+new revision: 1.7; previous revision: 1.6
+done
+bash-4.1$ cd ~o[K/os161/src/
+bash-4.1$ find file linux terminal[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K ./configure --ostree=$HOME/os161/root 
+Checking for ranlib... yes
+Checking for <err.h>... yes
+Generating defs.mk.
+bash-4.1$ cd kern/conf
+bash-4.1$ ./config/ASST0
+bash: ./config/ASST0: Not a directory
+bash-4.1$ ./config ASST0
+Configuration ASST0
+Generating files... opt-*.h files.mk defs.mk Makefile autoconf.h autoconf.c
+Configuration in ../compile/ASST0 done
+Remember to make depend
+bash-4.1$ cd ../compile/ASST0
+bash-4.1$ make depend
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -M ../../dev/lamebus/lhd.c ../../dev/lamebus/emu.c ../../dev/generic/random.c ../../dev/generic/rtclock.c ../../dev/generic/pseudorand.c ../../dev/lamebus/ltrace.c ../../dev/lamebus/lamebus.c ../../dev/generic/console.c ../../dev/lamebus/lser.c ../../dev/generic/beep.c ../../dev/lamebus/lrandom.c ../../dev/lamebus/ltimer.c ../../dev/lamebus/rtclock_ltimer.c ../../dev/lamebus/emu_att.c ../../dev/lamebus/random_lrandom.c ../../dev/lamebus/beep_ltimer.c ../../dev/lamebus/ltrace_att.c ../../dev/generic/pseudorand_att.c ../../dev/lamebus/con_lser.c ../../dev/lamebus/lrandom_att.c ../../dev/lamebus/lser_att.c ../../dev/lamebus/lhd_att.c ../../dev/lamebus/ltimer_att.c ../../fs/sfs/sfs_io.c ../../fs/sfs/sfs_fs.c ../../fs/sfs/sfs_vnode.c ../../arch/mips/mips/dumbvm.c ../../arch/mips/mips/cache_mips1.S ../../arch/mips/mips/exception.S ../../arch/mips/mips/lamebus_mips.c ../../arch/mips/mips/interrupt.c ../../arch/mips/mips/pcb.c ../../arch/mips/mips/ram.c ../../arch/mips/mips/spl.c ../../arch/mips/mips/start.S ../../arch/mips/mips/switch.S ../../arch/mips/mips/syscall.c ../../arch/mips/mips/threadstart.S ../../arch/mips/mips/trap.c ../../arch/mips/mips/tlb_mips1.S ../../../lib/libc/mips-setjmp.S ../../lib/copyinout.c ../../lib/array.c ../../lib/bitmap.c ../../lib/queue.c ../../lib/kheap.c ../../lib/kprintf.c ../../lib/kgets.c ../../lib/misc.c ../../lib/ntoh.c ../../../lib/libc/__printf.c ../../../lib/libc/snprintf.c ../../../lib/libc/atoi.c ../../../lib/libc/bzero.c ../../../lib/libc/memcpy.c ../../../lib/libc/memmove.c ../../../lib/libc/strcat.c ../../../lib/libc/strchr.c ../../../lib/libc/strcmp.c ../../../lib/libc/strcpy.c ../../../lib/libc/strlen.c ../../../lib/libc/strrchr.c ../../../lib/libc/strtok_r.c ../../dev/init.c ../../fs/vfs/device.c ../../fs/vfs/vfscwd.c ../../fs/vfs/vfslist.c ../../fs/vfs/vfslookup.c ../../fs/vfs/vfspath.c ../../fs/vfs/vnode.c ../../fs/vfs/devnull.c ../../thread/hardclock.c ../../thread/synch.c ../../thread/scheduler.c ../../thread/thread.c ../../main/main.c ../../main/menu.c ../../main/hello.c ../../userprog/loadelf.c ../../userprog/runprogram.c ../../userprog/uio.c ../../test/arraytest.c ../../test/bitmaptest.c ../../test/queuetest.c ../../test/threadtest.c ../../test/tt3.c ../../test/synchtest.c ../../test/malloctest.c ../../test/fstest.c ../../compile/ASST0/autoconf.c > depend.mk
+bash-4.1$ make 
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../main/main.c
+../../main/main.c: In function ‘shutdown’:
+../../main/main.c:5: warning: implicit declaration of function ‘kprintf’
+../../main/main.c:7: warning: implicit declaration of function ‘vfs_clearbootfs’
+../../main/main.c:8: warning: implicit declaration of function ‘vfs_clearcurdir’
+../../main/main.c:9: warning: implicit declaration of function ‘vfs_unmountall’
+../../main/main.c:11: warning: implicit declaration of function ‘splhigh’
+../../main/main.c:13: warning: implicit declaration of function ‘scheduler_shutdown’
+../../main/main.c:14: warning: implicit declaration of function ‘thread_shutdown’
+../../main/main.c: In function ‘sys_reboot’:
+../../main/main.c:30: error: ‘RB_REBOOT’ undeclared (first use in this function)
+../../main/main.c:30: error: (Each undeclared identifier is reported only once
+../../main/main.c:30: error: for each function it appears in.)
+../../main/main.c:31: error: ‘RB_HALT’ undeclared (first use in this function)
+../../main/main.c:32: error: ‘RB_POWEROFF’ undeclared (first use in this function)
+../../main/main.c:35: error: ‘EINVAL’ undeclared (first use in this function)
+../../main/main.c:43: warning: implicit declaration of function ‘md_halt’
+../../main/main.c:47: warning: implicit declaration of function ‘md_reboot’
+../../main/main.c:51: warning: implicit declaration of function ‘md_poweroff’
+../../main/main.c:55: warning: implicit declaration of function ‘panic’
+../../main/main.c: In function ‘kmain’:
+../../main/main.c:66: warning: implicit declaration of function ‘boot’
+../../main/main.c:69: warning: implicit declaration of function ‘menu’
+make: *** [main.o] Error 1
+bash-4.1$ make install
+[ -d /home/rsequei2/os161/root ] || mkdir /home/rsequei2/os161/root
+cp kernel /home/rsequei2/os161/root/kernel-ASST0
+rm -f /home/rsequei2/os161/root/kernel
+ln -s kernel-ASST0 /home/rsequei2/os161/root/kernel
+bash-4.1$ cd~/os161/ ~/os161/[C[C[C[C[C[C[C[Csrc/kern/main/
+bash-4.1$ rm main.c
+bash-4.1$ cvs update -d main.c
+cvs update: warning: main.c was lost
+U main.c
+bash-4.1$ cd ~/os161/src/
+bash-4.1$ ./configure --ostree=$HOME/os161/root
+Checking for ranlib... yes
+Checking for <err.h>... yes
+Generating defs.mk.
+bash-4.1$ cd kern/conf
+bash-4.1$ ./config ASST0
+Configuration ASST0
+Generating files... opt-*.h files.mk defs.mk Makefile autoconf.h autoconf.c
+Configuration in ../compile/ASST0 done
+Remember to make depend
+bash-4.1$ cd ../con[Kmpile/ASST0
+bash-4.1$ make depend
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -M ../../dev/lamebus/lhd.c ../../dev/lamebus/emu.c ../../dev/generic/random.c ../../dev/generic/rtclock.c ../../dev/generic/pseudorand.c ../../dev/lamebus/ltrace.c ../../dev/lamebus/lamebus.c ../../dev/generic/console.c ../../dev/lamebus/lser.c ../../dev/generic/beep.c ../../dev/lamebus/lrandom.c ../../dev/lamebus/ltimer.c ../../dev/lamebus/rtclock_ltimer.c ../../dev/lamebus/emu_att.c ../../dev/lamebus/random_lrandom.c ../../dev/lamebus/beep_ltimer.c ../../dev/lamebus/ltrace_att.c ../../dev/generic/pseudorand_att.c ../../dev/lamebus/con_lser.c ../../dev/lamebus/lrandom_att.c ../../dev/lamebus/lser_att.c ../../dev/lamebus/lhd_att.c ../../dev/lamebus/ltimer_att.c ../../fs/sfs/sfs_io.c ../../fs/sfs/sfs_fs.c ../../fs/sfs/sfs_vnode.c ../../arch/mips/mips/dumbvm.c ../../arch/mips/mips/cache_mips1.S ../../arch/mips/mips/exception.S ../../arch/mips/mips/lamebus_mips.c ../../arch/mips/mips/interrupt.c ../../arch/mips/mips/pcb.c ../../arch/mips/mips/ram.c ../../arch/mips/mips/spl.c ../../arch/mips/mips/start.S ../../arch/mips/mips/switch.S ../../arch/mips/mips/syscall.c ../../arch/mips/mips/threadstart.S ../../arch/mips/mips/trap.c ../../arch/mips/mips/tlb_mips1.S ../../../lib/libc/mips-setjmp.S ../../lib/copyinout.c ../../lib/array.c ../../lib/bitmap.c ../../lib/queue.c ../../lib/kheap.c ../../lib/kprintf.c ../../lib/kgets.c ../../lib/misc.c ../../lib/ntoh.c ../../../lib/libc/__printf.c ../../../lib/libc/snprintf.c ../../../lib/libc/atoi.c ../../../lib/libc/bzero.c ../../../lib/libc/memcpy.c ../../../lib/libc/memmove.c ../../../lib/libc/strcat.c ../../../lib/libc/strchr.c ../../../lib/libc/strcmp.c ../../../lib/libc/strcpy.c ../../../lib/libc/strlen.c ../../../lib/libc/strrchr.c ../../../lib/libc/strtok_r.c ../../dev/init.c ../../fs/vfs/device.c ../../fs/vfs/vfscwd.c ../../fs/vfs/vfslist.c ../../fs/vfs/vfslookup.c ../../fs/vfs/vfspath.c ../../fs/vfs/vnode.c ../../fs/vfs/devnull.c ../../thread/hardclock.c ../../thread/synch.c ../../thread/scheduler.c ../../thread/thread.c ../../main/main.c ../../main/menu.c ../../main/hello.c ../../userprog/loadelf.c ../../userprog/runprogram.c ../../userprog/uio.c ../../test/arraytest.c ../../test/bitmaptest.c ../../test/queuetest.c ../../test/threadtest.c ../../test/tt3.c ../../test/synchtest.c ../../test/malloctest.c ../../test/fstest.c ../../compile/ASST0/autoconf.c > depend.mk
+bash-4.1$ make [K
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../main/main.c
+../../main/main.c: In function ‘boot’:
+../../main/main.c:67: warning: format ‘%u’ expects type ‘unsigned int’, but argument 2 has type ‘const char *’
+../../main/main.c:76: warning: implicit declaration of function ‘hello’
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../compile/ASST0/autoconf.c
+../../conf/newvers.sh ASST0
+*** This is ASST0 build #8 ***
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c vers.c
+cs161-ld   -nostdlib -Ttext 0x80001000 -T ../../arch/mips/conf/ldscript -G 0 lhd.o emu.o random.o rtclock.o pseudorand.o ltrace.o lamebus.o console.o lser.o beep.o lrandom.o ltimer.o rtclock_ltimer.o emu_att.o random_lrandom.o beep_ltimer.o ltrace_att.o pseudorand_att.o con_lser.o lrandom_att.o lser_att.o lhd_att.o ltimer_att.o sfs_io.o sfs_fs.o sfs_vnode.o dumbvm.o cache_mips1.o exception.o lamebus_mips.o interrupt.o pcb.o ram.o spl.o start.o switch.o syscall.o threadstart.o trap.o tlb_mips1.o mips-setjmp.o copyinout.o array.o bitmap.o queue.o kheap.o kprintf.o kgets.o misc.o ntoh.o __printf.o snprintf.o atoi.o bzero.o memcpy.o memmove.o strcat.o strchr.o strcmp.o strcpy.o strlen.o strrchr.o strtok_r.o init.o device.o vfscwd.o vfslist.o vfslookup.o vfspath.o vnode.o devnull.o hardclock.o synch.o scheduler.o thread.o main.o menu.o hello.o loadelf.o runprogram.o uio.o arraytest.o bitmaptest.o queuetest.o threadtest.o tt3.o synchtest.o malloctest.o fstest.o autoconf.o vers.o -o kernel
+cs161-size kernel
+   text	   data	    bss	    dec	    hex	filename
+ 160776	    448	   7668	 168892	  293bc	kernel
+bash-4.1$ make install
+[ -d /home/rsequei2/os161/root ] || mkdir /home/rsequei2/os161/root
+cp kernel /home/rsequei2/os161/root/kernel-ASST0
+rm -f /home/rsequei2/os161/root/kernel
+ln -s kernel-ASST0 /home/rsequei2/os161/root/kernel
+bash-4.1$ cd ..
+bash-4.1$ cd~[K ~/os161/root
+bash-4.1$ sys161 kernel
+sys161: System/161 release 1.14, compiled Sep  4 2014 10:34:58
+
+OS/161 base system version 1.11
+Copyright (c) 2000, 2001, 2002, 2003
+   President and Fellows of Harvard College.  All rights reserved.
+
+Put-your-group-name-here's system version 0 (ASST0 #8)
+
+Hello World
+Cpu is MIPS r2000/r3000
+336k physical memory available
+Device probe...
+lamebus0 (system main bus)
+emu0 at lamebus0
+ltrace0 at lamebus0
+ltimer0 at lamebus0
+hardclock on ltimer0 (100 hz)
+beep0 at ltimer0
+rtclock0 at ltimer0
+lrandom0 at lamebus0
+random0 at lrandom0
+lhd0 at lamebus0
+lhd1 at lamebus0
+lser0 at lamebus0
+con0 at lser0
+pseudorand0 (virtual)
+
+OS/161 kernel [? for menu]: p /sbin/poweroff
+Operation took 0.000159280 seconds
+OS/161 kernel [? for menu]: Shutting down.
+The system is halted.
+sys161: 571046199 cycles (5980340k, 18u, 565065841i)
+sys161: 2956 irqs 6 exns 0r/0w disk 17r/703w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 22.812439 seconds (25.0322 mhz)
+sys161: Elapsed virtual time: 22.841847960 seconds (25 mhz)
+bash-4.1$ exit
+exit
+There are stopped jobs.
+bash-4.1$ exit
+exit
+cvs [commit aborted]: received termination signal
+
+Script done on Sat 13 Sep 2014 06:31:02 PM EDT

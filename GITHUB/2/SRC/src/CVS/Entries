@@ -1,0 +1,14 @@
+/.cvsignore/1.1.1.1/Thu Sep 11 20:14:06 2014//
+/CHANGES/1.1.1.1/Thu Sep 11 20:14:06 2014//
+/COPYING/1.1.1.1/Thu Sep 11 20:14:06 2014//
+/Makefile/1.1.1.1/Thu Sep 11 20:14:06 2014//
+/configure/1.1.1.1/Thu Sep 11 20:14:06 2014//
+/defs.mk.sample/1.1.1.1/Thu Sep 11 20:14:06 2014//
+D/bin////
+D/include////
+D/kern////
+D/lib////
+D/man////
+D/mk////
+D/sbin////
+D/testbin////

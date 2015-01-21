@@ -1,0 +1,66 @@
+Thread Questions
+1.What happens to a thread when it exits (i.e., calls thread_exit())? What about when it sleeps?
+
+Solution:thread_exit causes the current thread to exit. When a thread exits the parts of the thread we dont actually need get cleaned up right away. The rest has to wait until thread_destroy gets called from exorcise().
+It gives the CPU to another process and goes to sleep at the particular sleep address. When a call is made to the thread using thread_wakeup with the same sleep adress the thread becomes runnable again.
+
+
+2.What function(s) handle(s) a context switch?
+Solution::mi_switch() which is a high level machine independent context switch code and md_switch() which is the machine independent code which actually does the context switch
+
+3.What does it mean for a thread to be in each of the possible thread states?
+Solution::The thread states are S_RUN, S_READY, S_SLEEP, S_ZOMB.
+S_RUN implies if the thread is currently Running or executing,
+S_READY implies if the thread is Ready to run, 
+S_SLEEP impliesif it the thread is Sleeping i.e. it is ina wait state
+S_ZOMB implies if  its a Zombie thread i.e. if the parent thread has been destroyed but the child is still existing.
+
+/* States a thread can be in. */
+typedef enum {
+	S_RUN,
+	S_READY,
+	S_SLEEP,
+	S_ZOMB,
+} threadstate_t;
+
+
+
+4.What does it mean to turn interrupts off? How is this accomplished? Why is it important to turn off interrupts in the thread subsystem code?
+Solution:If interrupts are turned off then they get disabled.If an interrupt is requested it gets rejected.
+
+Interrupts are turned of by calling the function splhigh() .
+
+It is important to turn off interrupts so that the thread subsytem code can run atomically without interruptions. Also, if an interrupt occurs when a thread is in sleep state, then it could end up sleeping forever.
+
+5.What happens when a thread wakes up another thread? How does a sleeping thread get to run again?
+Solution:When a thread wakes up another thread the thread wakes up from its sleep state i.e. it gets out of the sleep queue and becomes runnable by the function call make_runnable() thereby inserting the thread in the run queue. The thread gets to run again when an mi_switch is called and that thread is returned by the scheduler.
+
+/* The thread can be made runnable again by making subsequent calls to the thread_wakeup() with the same address used to put the thread to sleep.*/
+
+
+
+Scheduler Questions
+6.What function is responsible for choosing the next thread to run?
+Solution:struct thread *scheduler(void) is responsible for the next thread to run.
+
+
+7.How does that function pick the next thread?
+Solution:The scheduler() calls the cpu_idle() recursively till the runqueue is empty. As soon as there are threads in the runqueue, the first thread in the runqueue is picked by the scheduler().
+
+
+8.What role does the hardware timer play in scheduling? What hardware independent function is called on a timer interrupt?
+Solution:The hardware timer periodically calls hardclock() from kern/thread/hardclock.c. 
+Under hardclock() it will call thread_yield causing the current thread to yield to another 
+thread.The hardware independent function called on a timer interrupt is  NO ANSWER
+
+Synchronization Questions
+9:Describe how thread_sleep() and thread_wakeup() are used to implement semaphores. What is the purpose of the argument passed to thread_sleep()?
+
+Solution:The function void P(struct semaphore *sem) which decrements the semaphore call thread_sleep() when semaphore count is 0.
+The function void V(struct semaphore *sem) which increments the semaphore call thread_wakeup to remove the thread from its sleep state.
+The argument passed by thread_sleep() is the address of the sleeping thread so that thread_wakeup ends up waking the threads connected to the correct semaphore.
+
+
+10.Why does the lock API in OS/161 provide lock_do_i_hold(), but not lock_get_holder()?
+Solution:The lock_do_i_hold() is used as this function call can help the thread find out if it holds the lock and release it. The API does not provide lock_get_holder() as the thread would rarely require to regain its own lock.
+
